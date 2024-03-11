@@ -18,9 +18,9 @@ const Sidebar = () => {
       {/** Store Component */}
       <button className={styles.btnClose} onClick={handleClose}>
         {open ? (
-          <AiOutlineRight className={styles.arrowIcon} />
-        ) : (
           <AiOutlineLeft className={styles.arrowIcon} />
+        ) : (
+          <AiOutlineRight className={styles.arrowIcon} />
         )}
       </button>
     </nav>
