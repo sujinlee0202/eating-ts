@@ -4,26 +4,38 @@ import styles from "./signup.module.css";
 import { useRef } from "react";
 import Input from "../../components/Input/Input";
 import * as InputError from "../../errors/inputErrorMessage";
+import Terms from "../../components/Terms/Terms";
 
-type Inputs = {
+interface InputText {
   email: string;
   id: string;
-  pw: string;
-  pwcurrect: string;
-};
+  password: string;
+  passwordCheck: string;
+}
+
+interface InputCheckbox {
+  allAgreements: string;
+  eatingTerms: string;
+  privacyPolicy: string;
+  locationServiceTerms: string;
+  eventBenefitsInfo: string;
+}
+
+export interface Inputs extends InputText, InputCheckbox {}
 
 const Signup = () => {
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<Inputs>({
     mode: "onChange",
   });
 
   const passwordRef = useRef<string | null>(null);
-  passwordRef.current = watch("pw");
+  passwordRef.current = watch("password");
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // firebase에 data 전달
@@ -66,7 +78,7 @@ const Signup = () => {
           label='Password : '
           type='password'
           placeholder='영문, 숫자 포함 6자 이상'
-          register={register("pw", {
+          register={register("password", {
             required: InputError.ERROR_MSG_REQUIRED,
             minLength: {
               value: 6,
@@ -77,14 +89,14 @@ const Signup = () => {
               message: InputError.ERROR_MSG_PASSWORD_PATTERN,
             },
           })}
-          error={errors.pw}
+          error={errors.password}
         />
 
         <Input
           label='Password 확인 : '
           type='password'
           placeholder='영문, 숫자 포함 6자 이상'
-          register={register("pwcurrect", {
+          register={register("passwordCheck", {
             required: InputError.ERROR_MSG_REQUIRED,
             minLength: {
               value: 6,
@@ -100,7 +112,15 @@ const Signup = () => {
                 return InputError.ERROR_MSG_VALIDATE;
             },
           })}
-          error={errors.pwcurrect}
+          error={errors.passwordCheck}
+        />
+
+        {/** 이용 약관 */}
+        <Terms
+          register={register}
+          errors={errors}
+          watch={watch}
+          setValue={setValue}
         />
 
         <input type='submit' />
