@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Input from "../../components/Input/Input";
 import * as InputError from "../../errors/inputErrorMessage";
 import Terms from "../../components/Terms/Terms";
+import { Link } from "react-router-dom";
 
 interface InputText {
   email: string;
@@ -43,11 +44,13 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <img src={logo} alt='eating-logo' className={styles.logo} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className={styles.container}>
+      <Link to='/'>
+        <img src={logo} alt='eating-logo' className={styles.logo} />
+      </Link>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <Input
-          label='이메일 : '
+          label='이메일'
           type='text'
           placeholder='E-mail를 입력하세요'
           register={register("email", {
@@ -61,7 +64,7 @@ const Signup = () => {
         />
 
         <Input
-          label='아이디 : '
+          label='아이디'
           type='text'
           placeholder='ID를 입력하세요'
           register={register("id", {
@@ -75,7 +78,7 @@ const Signup = () => {
         />
 
         <Input
-          label='Password : '
+          label='비밀번호'
           type='password'
           placeholder='영문, 숫자 포함 6자 이상'
           register={register("password", {
@@ -93,7 +96,7 @@ const Signup = () => {
         />
 
         <Input
-          label='Password 확인 : '
+          label='비밀번호 확인'
           type='password'
           placeholder='영문, 숫자 포함 6자 이상'
           register={register("passwordCheck", {
