@@ -1,13 +1,25 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  font-weight: normal;
+  src: url("./font/Pretendard-Regular.ttf") format("truetype");
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: "Pretendard-Regular";
 }
 
-button {
+button,
+input[type="submit"] {
   border: none;
   margin: 0;
   padding: 0;
   outline: none;
-  background: transparent;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  outline: none;
   cursor: pointer;
 }

@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox {
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgb(118, 118, 118);
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+}
+
+.errorMessage {
+  color: red;
+  font-size: small;
+  margin-top: 1px;
+}
