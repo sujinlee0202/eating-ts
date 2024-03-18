@@ -7,6 +7,7 @@ import {
 import { Inputs } from "../../pages/Signup/signup";
 import { ERROR_MSG_TERMS } from "../../errors/inputErrorMessage";
 import Checkbox from "../Checkbox/Checkbox";
+import styles from "./Terms.module.css";
 
 interface Props {
   register: UseFormRegister<Inputs>;
@@ -42,14 +43,12 @@ const Terms = ({ register, errors, watch, setValue }: Props) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Checkbox
         label='모두 동의'
         register={register("allAgreements", {
-          required: ERROR_MSG_TERMS,
           onChange: handleCheckedAll,
         })}
-        error={errors.allAgreements}
       />
 
       <Checkbox

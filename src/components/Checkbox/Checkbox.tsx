@@ -1,4 +1,5 @@
 import { FieldError } from "react-hook-form";
+import styles from "./Checkbox.module.css";
 
 interface Props {
   label: string;
@@ -10,10 +11,12 @@ interface Props {
 
 const Checkbox = ({ label, register, error }: Props) => {
   return (
-    <div>
-      <input type='checkbox' {...register} />
+    <div className={styles.container}>
+      <input type='checkbox' {...register} className={styles.checkbox} />
       <label>{label}</label>
-      <p>{error?.type === "required" && error.message}</p>
+      <p className={styles.errorMessage}>
+        {error?.type === "required" && error.message}
+      </p>
     </div>
   );
 };

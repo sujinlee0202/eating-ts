@@ -5,4 +5,4 @@ export const ERROR_MSG_PASSWORD_PATTERN =
   "영문, 숫자 포함해 6글자 이상 작성해주세요.";
 export const ERROR_MSG_VALIDATE = "비밀번호가 일치하지 않습니다.";
 
-export const ERROR_MSG_TERMS = "필수 약관입니다.";
+export const ERROR_MSG_TERMS = "필수 약관에 모두 동의해주세요.";

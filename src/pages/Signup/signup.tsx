@@ -30,7 +30,7 @@ const Signup = () => {
     handleSubmit,
     watch,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<Inputs>({
     mode: "onChange",
   });
@@ -126,7 +126,11 @@ const Signup = () => {
           setValue={setValue}
         />
 
-        <input type='submit' />
+        <input
+          type='submit'
+          value='회원가입 하기'
+          className={`${styles.submit} ${isValid && styles.valid}`}
+        />
       </form>
     </div>
   );
