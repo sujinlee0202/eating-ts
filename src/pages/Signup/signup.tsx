@@ -7,6 +7,7 @@ import * as InputError from "../../errors/inputErrorMessage";
 import Terms from "../../components/Terms/Terms";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../api/firebase/auth";
+import SNSLogin from "../../components/SNSLogin/SNSLogin";
 
 interface InputText {
   email: string;
@@ -139,6 +140,9 @@ const Signup = () => {
           className={`${styles.submit} ${isValid && styles.valid}`}
         />
       </form>
+
+      {/** SNS Login */}
+      <SNSLogin />
     </div>
   );
 };
