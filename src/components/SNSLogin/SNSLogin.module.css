@@ -1,0 +1,32 @@
+.SNSLogin {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SNSLoginText {
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+}
+
+.loginWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.loginButton {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-contents: center;
+  background-color: "white";
+  border-radius: 100%;
+}
+
+.snsIcon {
+  width: 100%;
+  height: 100%;
+}

@@ -5,7 +5,9 @@ import { useRef } from "react";
 import Input from "../../components/Input/Input";
 import * as InputError from "../../errors/inputErrorMessage";
 import Terms from "../../components/Terms/Terms";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signup } from "../../api/firebase/auth";
+import SNSLogin from "../../components/SNSLogin/SNSLogin";
 
 interface InputText {
   email: string;
@@ -38,9 +40,15 @@ const Signup = () => {
   const passwordRef = useRef<string | null>(null);
   passwordRef.current = watch("password");
 
+  const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // firebase에 data 전달
-    console.log(data);
+    signup({ email: data.email, password: data.password }).then((user) => {
+      if (user) {
+        navigate("/");
+      }
+    });
   };
 
   return (
@@ -132,6 +140,9 @@ const Signup = () => {
           className={`${styles.submit} ${isValid && styles.valid}`}
         />
       </form>
+
+      {/** SNS Login */}
+      <SNSLogin />
     </div>
   );
 };
