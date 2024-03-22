@@ -1,7 +1,11 @@
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { app } from "./firebase";
 
-type SignupUserInfo = {
+type useIdPassword = {
   email: string;
   password: string;
 };
@@ -9,7 +13,7 @@ type SignupUserInfo = {
 const auth = getAuth(app);
 
 // ID/PW를 통한 회원가입
-export const signup = async (userInfo: SignupUserInfo) => {
+export const signup = async (userInfo: useIdPassword) => {
   const { email, password } = userInfo;
 
   return await createUserWithEmailAndPassword(auth, email, password)
@@ -20,6 +24,24 @@ export const signup = async (userInfo: SignupUserInfo) => {
       const errorCode = error.code;
       if (errorCode === "auth/email-already-in-use") {
         alert("이미 존재하는 이메일입니다.");
+      }
+    });
+};
+
+// ID/PW를 통한 로그인
+export const signinWithEmailAndPassword = async (userInfo: useIdPassword) => {
+  const { email, password } = userInfo;
+
+  return await signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      return user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+
+      if (errorCode === "auth/invalid-credential") {
+        alert("비밀번호가 일치하지 않습니다.");
       }
     });
 };

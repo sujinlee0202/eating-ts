@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Input from "../../components/Input/Input";
 import * as InputError from "../../errors/inputErrorMessage";
 import { Link, useNavigate } from "react-router-dom";
+import { signinWithEmailAndPassword } from "../../api/firebase/auth";
 
 interface InputText {
   email: string;
@@ -29,7 +30,14 @@ const Login = () => {
   const onSubmit: SubmitHandler<InputText> = (data) => {
     // firebase에 data 전달
     if (data) {
-      navigate("/");
+      signinWithEmailAndPassword({
+        email: data.email,
+        password: data.password,
+      }).then((user) => {
+        if (user) {
+          navigate("/");
+        }
+      });
     }
   };
 
