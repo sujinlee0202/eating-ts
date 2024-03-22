@@ -1,21 +1,35 @@
 import googleLogin from "../../assets/google_login.png";
+import naverLogin from "../../assets/naver_login.png";
 import styles from "./SNSLogin.module.css";
 
 const SNSLogin = () => {
   const handleGoogleLogin = () => {
-    console.log("SNS 회원가입");
+    alert("업데이트 예정입니다.");
+  };
+
+  const handleNaverLogin = () => {
+    alert("업데이트 예정입니다.");
   };
 
   return (
     <div className={styles.SNSLogin}>
       <p className={styles.SNSLoginText}>SNS 계정으로 회원가입 하기</p>
-      <button className={styles.googleLoginButton} onClick={handleGoogleLogin}>
-        <img
-          src={googleLogin}
-          alt='google 회원가입'
-          className={styles.googleImage}
-        ></img>
-      </button>
+      <div className={styles.loginWrapper}>
+        <button className={styles.loginButton} onClick={handleGoogleLogin}>
+          <img
+            src={googleLogin}
+            alt='google 회원가입'
+            className={styles.snsIcon}
+          ></img>
+        </button>
+        <button className={styles.loginButton} onClick={handleNaverLogin}>
+          <img
+            src={naverLogin}
+            alt='naver 회원가입'
+            className={styles.snsIcon}
+          ></img>
+        </button>
+      </div>
     </div>
   );
 };

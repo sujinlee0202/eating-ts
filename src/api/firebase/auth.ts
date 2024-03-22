@@ -8,6 +8,7 @@ type SignupUserInfo = {
 
 const auth = getAuth(app);
 
+// ID/PW를 통한 회원가입
 export const signup = async (userInfo: SignupUserInfo) => {
   const { email, password } = userInfo;
 
