@@ -2,8 +2,11 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { app } from "./firebase";
+import { FirebaseUser } from "../../types/FIrebaseUser";
 
 type useIdPassword = {
   email: string;
@@ -44,4 +47,17 @@ export const signinWithEmailAndPassword = async (userInfo: useIdPassword) => {
         alert("비밀번호가 일치하지 않습니다.");
       }
     });
+};
+
+// 유저 상태 변경 시 호출
+export const onAuthStateChange = (callback: (user: FirebaseUser) => void) => {
+  onAuthStateChanged(auth, async (user) => {
+    console.log("onauth", user);
+    callback(user as FirebaseUser);
+  });
+};
+
+// 로그아웃
+export const logout = async () => {
+  return signOut(auth).then(() => {});
 };
