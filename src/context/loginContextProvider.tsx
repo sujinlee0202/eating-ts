@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChange } from "../api/firebase/auth";
-import { FirebaseUser } from "../types/FIrebaseUser";
+import { FirebaseUser } from "../types/FirebaseUser";
 import { loginContext } from "./loginContext";
 
 interface Props {
