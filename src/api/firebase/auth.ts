@@ -1,7 +1,14 @@
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 import { app } from "./firebase";
+import { FirebaseUser } from "../../types/FIrebaseUser";
 
-type SignupUserInfo = {
+type useIdPassword = {
   email: string;
   password: string;
 };
@@ -9,7 +16,7 @@ type SignupUserInfo = {
 const auth = getAuth(app);
 
 // ID/PW를 통한 회원가입
-export const signup = async (userInfo: SignupUserInfo) => {
+export const signup = async (userInfo: useIdPassword) => {
   const { email, password } = userInfo;
 
   return await createUserWithEmailAndPassword(auth, email, password)
@@ -22,4 +29,35 @@ export const signup = async (userInfo: SignupUserInfo) => {
         alert("이미 존재하는 이메일입니다.");
       }
     });
+};
+
+// ID/PW를 통한 로그인
+export const signinWithEmailAndPassword = async (userInfo: useIdPassword) => {
+  const { email, password } = userInfo;
+
+  return await signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      return user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+
+      if (errorCode === "auth/invalid-credential") {
+        alert("비밀번호가 일치하지 않습니다.");
+      }
+    });
+};
+
+// 유저 상태 변경 시 호출
+export const onAuthStateChange = (callback: (user: FirebaseUser) => void) => {
+  onAuthStateChanged(auth, async (user) => {
+    console.log("onauth", user);
+    callback(user as FirebaseUser);
+  });
+};
+
+// 로그아웃
+export const logout = async () => {
+  return signOut(auth).then(() => {});
 };
