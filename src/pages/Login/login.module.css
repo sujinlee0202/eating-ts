@@ -28,3 +28,15 @@
     background-color: rgb(48, 151, 0);
   }
 }
+
+.infoSignup {
+  display: flex;
+  margin-top: 20px;
+  gap: 4px;
+}
+
+.signupButton {
+  color: rgb(48, 151, 0);
+  text-decoration: underline;
+  font-weight: bold;
+}

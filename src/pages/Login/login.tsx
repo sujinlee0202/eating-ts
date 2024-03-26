@@ -85,6 +85,13 @@ const Login = () => {
           className={`${styles.submit} ${isValid && styles.valid}`}
         />
       </form>
+
+      <div className={styles.infoSignup}>
+        <p>아직 회원이 아니신가요?</p>
+        <Link to='/signup' className={styles.signupButton}>
+          회원가입
+        </Link>
+      </div>
     </div>
   );
 };
