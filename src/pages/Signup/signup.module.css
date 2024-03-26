@@ -28,3 +28,20 @@
     background-color: rgb(48, 151, 0);
   }
 }
+
+.infoLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 40px);
+  height: 50px;
+  margin: 10px 20px;
+  background-color: #e0e0e0;
+  gap: 4px;
+}
+
+.loginButton {
+  color: rgb(48, 151, 0);
+  text-decoration: underline;
+  font-weight: bold;
+}

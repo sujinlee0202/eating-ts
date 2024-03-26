@@ -56,6 +56,12 @@ const Signup = () => {
       <Link to='/'>
         <img src={logo} alt='eating-logo' className={styles.logo} />
       </Link>
+      <div className={styles.infoLogin}>
+        <p>이미 회원이신가요?</p>
+        <Link to='/login' className={styles.loginButton}>
+          로그인
+        </Link>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <Input
           label='이메일'
