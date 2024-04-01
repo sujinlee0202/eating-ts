@@ -52,7 +52,6 @@ export const signinWithEmailAndPassword = async (userInfo: useIdPassword) => {
 // 유저 상태 변경 시 호출
 export const onAuthStateChange = (callback: (user: FirebaseUser) => void) => {
   onAuthStateChanged(auth, async (user) => {
-    console.log("onauth", user);
     callback(user as FirebaseUser);
   });
 };

@@ -35,6 +35,7 @@ const Login = () => {
         password: data.password,
       }).then((user) => {
         if (user) {
+          sessionStorage.setItem("user", JSON.stringify({ ...user }));
           navigate("/");
         }
       });

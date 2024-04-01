@@ -9,6 +9,8 @@ interface Props {
 
 const LoginProvider = ({ children }: Props) => {
   const [user, setUser] = useState<FirebaseUser | null>(null);
+  const userSession = sessionStorage.getItem("user");
+  const userSessionObject = userSession && JSON.parse(userSession);
 
   useEffect(() => {
     onAuthStateChange((authUser) => {
@@ -17,7 +19,7 @@ const LoginProvider = ({ children }: Props) => {
   }, []);
 
   return (
-    <loginContext.Provider value={{ user, setUser }}>
+    <loginContext.Provider value={{ user, setUser, userSessionObject }}>
       {children}
     </loginContext.Provider>
   );
