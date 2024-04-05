@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import { FirebaseUser } from "../types/FirebaseUser";
+import { User } from "firebase/auth";
 
 interface LoginContextType {
-  user: FirebaseUser | null;
-  setUser: (user: FirebaseUser | null) => void;
-  userSessionObject: FirebaseUser | null;
+  user: User | null;
+  setUser: (user: User | null) => void;
+  userSessionObject: User | null;
 }
 
 export const loginContext = createContext<LoginContextType>({

@@ -3,16 +3,16 @@ import styles from "./UserMenu.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { loginContext } from "../../context/loginContext";
-import gravatar from "gravatar";
 import Menu from "../Menu/Menu";
+import gravatar from "gravatar";
 
 const UserMenu = () => {
-  const { user, userSessionObject } = useContext(loginContext);
+  const { userSessionObject } = useContext(loginContext);
   const navigate = useNavigate();
   const [isOpenMenu, setisOpenMenu] = useState(false);
 
   const handleOpenMenu = () => {
-    if (!user) navigate("/login");
+    if (!userSessionObject) navigate("/login");
     else setisOpenMenu((prev) => !prev);
   };
 
@@ -24,7 +24,7 @@ const UserMenu = () => {
         )}
         {userSessionObject && (
           <img
-            src={gravatar.url(userSessionObject?.email, {
+            src={gravatar.url(userSessionObject.email!, {
               s: "28px",
               d: "retro",
             })}
@@ -32,7 +32,7 @@ const UserMenu = () => {
           />
         )}
       </button>
-      {isOpenMenu && user && <Menu />}
+      {isOpenMenu && userSessionObject && <Menu />}
     </>
   );
 };

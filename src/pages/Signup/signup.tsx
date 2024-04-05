@@ -8,6 +8,8 @@ import Terms from "../../components/Terms/Terms";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../api/firebase/auth";
 import SNSLogin from "../../components/SNSLogin/SNSLogin";
+import { setUser } from "../../api/firebase/firestore";
+import gravatar from "gravatar";
 
 interface InputText {
   email: string;
@@ -46,7 +48,15 @@ const Signup = () => {
     // firebase에 data 전달
     signup({ email: data.email, password: data.password }).then((user) => {
       if (user) {
-        navigate("/");
+        setUser({
+          ...user,
+          displayName: data.id,
+          photoURL: gravatar.url(data.email, {
+            s: "28px",
+            d: "retro",
+          }),
+        });
+        navigate("/login");
       }
     });
   };
