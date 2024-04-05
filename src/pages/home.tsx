@@ -1,13 +1,13 @@
 import MapSection from "../components/MapSection/MapSection";
-import Menu from "../components/Menu/Menu";
 import Sidebar from "../components/Sidebar/Sidebar";
+import UserMenu from "../components/UserMenu/UserMenu";
 
 const Home = () => {
   return (
     <>
       <MapSection />
       <Sidebar />
-      <Menu />
+      <UserMenu />
     </>
   );
 };
