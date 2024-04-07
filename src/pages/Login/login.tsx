@@ -1,11 +1,12 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import logo from "../../assets/eating_logo.png";
 import styles from "./login.module.css";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import Input from "../../components/Input/Input";
 import * as InputError from "../../errors/inputErrorMessage";
 import { Link, useNavigate } from "react-router-dom";
 import { signinWithEmailAndPassword } from "../../api/firebase/auth";
+import { loginContext } from "../../context/loginContext";
 
 interface InputText {
   email: string;
@@ -25,6 +26,8 @@ const Login = () => {
   const passwordRef = useRef<string | null>(null);
   passwordRef.current = watch("password");
 
+  const { setUser } = useContext(loginContext);
+
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<InputText> = (data) => {
@@ -36,6 +39,7 @@ const Login = () => {
       }).then((user) => {
         if (user) {
           sessionStorage.setItem("user", JSON.stringify({ ...user }));
+          setUser(user);
           navigate("/");
         }
       });

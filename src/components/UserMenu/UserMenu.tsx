@@ -7,24 +7,24 @@ import Menu from "../Menu/Menu";
 import gravatar from "gravatar";
 
 const UserMenu = () => {
-  const { userSessionObject } = useContext(loginContext);
+  const { parsedSessionStorageUser } = useContext(loginContext);
   const navigate = useNavigate();
   const [isOpenMenu, setisOpenMenu] = useState(false);
 
   const handleOpenMenu = () => {
-    if (!userSessionObject) navigate("/login");
+    if (!parsedSessionStorageUser) navigate("/login");
     else setisOpenMenu((prev) => !prev);
   };
 
   return (
     <>
       <button className={styles.userMenuButton} onClick={handleOpenMenu}>
-        {!userSessionObject && (
+        {!parsedSessionStorageUser && (
           <BsFillPersonFill className={styles.userMenuIcon} />
         )}
-        {userSessionObject && (
+        {parsedSessionStorageUser && (
           <img
-            src={gravatar.url(userSessionObject.email!, {
+            src={gravatar.url(parsedSessionStorageUser.email!, {
               s: "28px",
               d: "retro",
             })}
@@ -32,7 +32,7 @@ const UserMenu = () => {
           />
         )}
       </button>
-      {isOpenMenu && userSessionObject && <Menu />}
+      {isOpenMenu && parsedSessionStorageUser && <Menu />}
     </>
   );
 };

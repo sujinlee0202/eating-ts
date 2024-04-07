@@ -4,11 +4,11 @@ import { User } from "firebase/auth";
 interface LoginContextType {
   user: User | null;
   setUser: (user: User | null) => void;
-  userSessionObject: User | null;
+  parsedSessionStorageUser: User | null;
 }
 
 export const loginContext = createContext<LoginContextType>({
   user: null,
   setUser: () => {},
-  userSessionObject: null,
+  parsedSessionStorageUser: null,
 });

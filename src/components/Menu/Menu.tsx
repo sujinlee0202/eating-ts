@@ -6,18 +6,18 @@ import { Link } from "react-router-dom";
 import { getUser } from "../../api/firebase/firestore";
 
 const Menu = () => {
-  const { userSessionObject, setUser } = useContext(loginContext);
+  const { parsedSessionStorageUser, setUser } = useContext(loginContext);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    if (userSessionObject?.email) {
-      getUser(userSessionObject?.email).then((data) => {
+    if (parsedSessionStorageUser?.email) {
+      getUser(parsedSessionStorageUser?.email).then((data) => {
         if (data) {
           if (data.admin) setIsAdmin(true);
         }
       });
     }
-  }, [userSessionObject]);
+  }, [parsedSessionStorageUser]);
 
   const handleLogout = () => {
     logout().then(() => {

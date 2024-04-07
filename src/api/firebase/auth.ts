@@ -7,7 +7,6 @@ import {
   User,
 } from "firebase/auth";
 import { app } from "./firebase";
-import { getUser } from "./firestore";
 
 type useIdPassword = {
   email: string;
@@ -61,6 +60,3 @@ export const onAuthStateChange = (callback: (user: User) => void) => {
 export const logout = async () => {
   return signOut(auth).then(() => {});
 };
-
-// admin 판별하기
-export const adminUser = (email: string) => {};
