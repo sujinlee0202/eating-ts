@@ -9,7 +9,7 @@ type InputFieldError = {
 interface Props {
   label: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   register: {
     name: string;
   };
