@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "../Input/Input";
 import TextArea from "../TextArea/TextArea";
 import * as InputError from "../../errors/inputErrorMessage";
@@ -21,7 +21,10 @@ const AddPlaceInfoForm = () => {
     mode: "onChange",
   });
 
-  const onSubmitAddPlace = () => {};
+  const onSubmitAddPlace: SubmitHandler<Inputs> = (data) => {
+    // place review, category, menu ...
+    console.log(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmitAddPlace)} className={styles.form}>

@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./SearchPlaceForm.module.css";
 import * as InputError from "../../errors/inputErrorMessage";
 import { useEffect, useState } from "react";
@@ -23,7 +23,10 @@ const SearchPlaceForm = () => {
     else setIsError(false);
   }, [errors.place]);
 
-  const onSubmitSearchPlace = () => {};
+  const onSubmitSearchPlace: SubmitHandler<Inputs> = (data) => {
+    // data : place name
+    console.log(data);
+  };
 
   return (
     <>

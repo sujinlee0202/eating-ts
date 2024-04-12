@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./TextArea.module.css";
 
 type InputFieldError = {
@@ -23,16 +23,38 @@ const TextArea = ({ label, placeholder, register, error }: Props) => {
     else setIsError(false);
   }, [error]);
 
+  const textareaClassName = `
+    ${styles.textarea}
+    ${isError ? styles.error : null}
+    ${register.name === "review" ? styles.largeTextarea : null}
+    ${register.name === "menu" ? styles.smallTextarea : null}
+    ${register.name === "time" ? styles.smallTextarea : null}
+  `;
+
   return (
     <div className={styles.container}>
       <label className={styles.label}>{label}</label>
       <textarea
         placeholder={placeholder}
-        className={`${styles.textarea} ${isError ? styles.error : null}`}
+        className={textareaClassName}
         {...register}
       />
+      {error?.type === "required" && (
+        <p className={styles.errorMessage}>{error.message}</p>
+      )}
     </div>
   );
 };
 
 export default TextArea;
+
+/*
+
+    ${currentRef.name === "review" ? styles.largeTextarea : null}
+    ${
+      currentRef.name === "menu" || currentRef.name === "time"
+        ? styles.mediumTextarea
+        : null
+    }
+
+*/

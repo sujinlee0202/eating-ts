@@ -12,12 +12,25 @@
 
 .textarea {
   width: 100%;
-  height: 40px;
   margin-bottom: 4px;
-  padding: 0 8px;
+  padding: 8px;
+  resize: none;
+
   &.error {
     border: 1px solid red;
     outline: 1px solid red;
+  }
+
+  &.largeTextarea {
+    height: 400px;
+  }
+
+  &.mediumTextarea {
+    height: 200px;
+  }
+
+  &.smallTextarea {
+    height: 100px;
   }
 }
 
