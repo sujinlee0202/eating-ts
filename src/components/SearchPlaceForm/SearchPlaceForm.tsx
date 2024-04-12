@@ -2,21 +2,36 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./SearchPlaceForm.module.css";
 import * as InputError from "../../errors/inputErrorMessage";
 import { useEffect, useState } from "react";
+import { search } from "../../api/naver/search";
 
 interface Inputs {
   place: string;
+}
+
+interface Place {
+  address: string;
+  category: string;
+  description: string;
+  link: string;
+  mapx: string;
+  mapy: string;
+  roadAddress: string;
+  telephone: string;
+  title: string;
 }
 
 const SearchPlaceForm = () => {
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors, isValid },
   } = useForm<Inputs>({
     mode: "onChange",
   });
 
   const [isError, setIsError] = useState(false);
+  const [searchedPlace, setSearchedPlace] = useState<Place[]>([]);
 
   useEffect(() => {
     if (errors.place) setIsError(true);
@@ -24,8 +39,31 @@ const SearchPlaceForm = () => {
   }, [errors.place]);
 
   const onSubmitSearchPlace: SubmitHandler<Inputs> = (data) => {
-    // data : place name
-    console.log(data);
+    search(data.place).then((res) => {
+      // 검색 결과를 받아옴
+      const searchedItems = res.data.items.map((item: Place) => {
+        // HTML 엔터티를 디코딩하여 일반 텍스트로 변환
+        const encodedText = item.title;
+        const div = document.createElement("div");
+        div.innerHTML = encodedText;
+        const decodedText = div.textContent || div.innerText || "";
+
+        // 변환된 title을 포함한 새로운 객체 반환
+        return {
+          ...item,
+          title: decodedText,
+        };
+      });
+
+      // 변환된 검색 결과를 상태에 저장
+      setSearchedPlace(searchedItems);
+    });
+  };
+
+  // 장소 선택
+  const handleClickPlace = (place: Place) => {
+    // input text 변경
+    setValue("place", place.title);
   };
 
   return (
@@ -64,13 +102,20 @@ const SearchPlaceForm = () => {
 
       {/** 검색 리스트 출력 */}
       <ul className={styles.searchedList}>
-        <li className={styles.searchedListContent}>
-          <p className={styles.searchedPlaceName}>장소명</p>
-          <p className={styles.searchedPlaceAddress}>
-            주소가 많이 많이 긴 상태일 때 말줄임표 사용하기 말줄임표 말줄임표
-            말줄임표
-          </p>
-        </li>
+        {searchedPlace.map((place: Place, index: number) => {
+          return (
+            <button
+              key={index}
+              className={styles.listButton}
+              onClick={() => handleClickPlace(place)}
+            >
+              <li className={styles.listContent}>
+                <p className={styles.placeName}>{place.title}</p>
+                <p className={styles.placeAddress}>{place.roadAddress}</p>
+              </li>
+            </button>
+          );
+        })}
       </ul>
 
       {/** 지도 표시 영역 */}

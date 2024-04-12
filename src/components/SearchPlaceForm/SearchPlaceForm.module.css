@@ -63,20 +63,24 @@
   margin-bottom: 20px;
 }
 
-.searchedListContent {
+.listButton {
+  padding: 4px 0;
+  background-color: inherit;
+}
+
+.listContent {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 8px;
 }
 
-.searchedPlaceName {
+.placeName {
   font-weight: bold;
   white-space: nowrap;
 }
 
-.searchedPlaceAddress {
+.placeAddress {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
