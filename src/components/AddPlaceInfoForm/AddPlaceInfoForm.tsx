@@ -3,6 +3,8 @@ import Input from "../Input/Input";
 import TextArea from "../TextArea/TextArea";
 import * as InputError from "../../errors/inputErrorMessage";
 import styles from "./AddPlaceInfoForm.module.css";
+import { uploadFile } from "../../api/firebase/storage";
+import { useState } from "react";
 
 interface Inputs {
   review: string;
@@ -21,16 +23,29 @@ const AddPlaceInfoForm = () => {
     mode: "onChange",
   });
 
+  const [uploadImage, setUploadImage] = useState<File[] | undefined>();
+
+  const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const filesArray: File[] = Array.from(e.target.files);
+      setUploadImage(filesArray);
+    }
+    // TODO : 사진들 미리보기 표시
+  };
+
   const onSubmitAddPlace: SubmitHandler<Inputs> = (data) => {
     // place review, category, menu ...
     console.log(data);
+    // TODO : 장소명 수정하기
+    if (uploadImage) uploadFile("장소명", uploadImage);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmitAddPlace)} className={styles.form}>
+      {/** TODO : 미리보기 구현 및 UI 변경 */}
       <div className={styles.fileInputContainer}>
         <label className={styles.label}>사진 업로드</label>
-        <input type='file'></input>
+        <input type='file' multiple onChange={handleUploadImage}></input>
       </div>
 
       <div className={styles.photoContainer}>사진이 표시될 영역입니다.</div>
