@@ -3,6 +3,7 @@ import styles from "./SearchPlaceForm.module.css";
 import * as InputError from "../../errors/inputErrorMessage";
 import { useEffect, useState } from "react";
 import { search } from "../../api/naver/search";
+import { geocoder, markerMap } from "../../api/naver/map";
 
 interface Inputs {
   place: string;
@@ -64,6 +65,12 @@ const SearchPlaceForm = () => {
   const handleClickPlace = (place: Place) => {
     // input text 변경
     setValue("place", place.title);
+
+    // tm128 좌표를 naver 좌표로 변경 후 지도 불러오기
+    const x = geocoder(place.mapx, place.mapy).x;
+    const y = geocoder(place.mapx, place.mapy).y;
+
+    markerMap(x, y);
   };
 
   return (
@@ -119,7 +126,9 @@ const SearchPlaceForm = () => {
       </ul>
 
       {/** 지도 표시 영역 */}
-      <div className={styles.mapContainer}>지도가 표시될 영역입니다.</div>
+      <div id='markerMap' className={styles.mapContainer}>
+        지도가 표시될 영역입니다.
+      </div>
     </>
   );
 };
