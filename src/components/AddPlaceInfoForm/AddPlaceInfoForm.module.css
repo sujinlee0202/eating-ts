@@ -38,4 +38,6 @@
   align-items: center;
   color: rgba(48, 151, 0, 0.4);
   font-weight: bold;
+  position: relative;
+  overflow: hidden;
 }
