@@ -1,3 +1,4 @@
+import { PlaceReview } from "./../../types/place";
 // import gravatar from "gravatar";
 import {
   collection,
@@ -6,7 +7,7 @@ import {
   getFirestore,
   setDoc,
 } from "firebase/firestore";
-import { app } from "./firebase";
+import { app } from ".";
 import { User } from "firebase/auth";
 
 const db = getFirestore(app);
@@ -33,5 +34,20 @@ export const getUser = async (email: string) => {
   const userDocSnap = await getDoc(userRef);
 
   if (userDocSnap.exists()) return userDocSnap.data();
+  else return undefined;
+};
+
+// place review 저장
+export const setPlace = async (placeReview: PlaceReview) => {
+  const placeReviewRef = collection(db, "place");
+  await setDoc(doc(placeReviewRef, placeReview.title), placeReview);
+};
+
+// place review 불러오기
+export const getPlace = async () => {
+  const PlaceReviewRef = doc(db, "place");
+  const placeReviewDocSnap = await getDoc(PlaceReviewRef);
+
+  if (placeReviewDocSnap.exists()) return placeReviewDocSnap.data();
   else return undefined;
 };

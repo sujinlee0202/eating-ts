@@ -47,14 +47,3 @@ const TextArea = ({ label, placeholder, register, error }: Props) => {
 };
 
 export default TextArea;
-
-/*
-
-    ${currentRef.name === "review" ? styles.largeTextarea : null}
-    ${
-      currentRef.name === "menu" || currentRef.name === "time"
-        ? styles.mediumTextarea
-        : null
-    }
-
-*/

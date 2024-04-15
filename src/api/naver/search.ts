@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const search = async (query: string) => {
-  console.log("query", query);
   return await axios.get("/v1/search/local.json", {
     params: {
       query: query,

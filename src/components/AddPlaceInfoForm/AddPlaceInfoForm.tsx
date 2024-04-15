@@ -6,8 +6,11 @@ import styles from "./AddPlaceInfoForm.module.css";
 import { uploadFile } from "../../api/firebase/storage";
 import { useState } from "react";
 import ImageCaruosel from "../ImageCarousel/ImageCaruosel";
+import { Place, PlaceReview } from "../../types/place";
+import { setPlace } from "../../api/firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
-interface Inputs {
+export interface Inputs {
   review: string;
   phone: string;
   time: string;
@@ -15,7 +18,11 @@ interface Inputs {
   category: string;
 }
 
-const AddPlaceInfoForm = () => {
+interface Props {
+  selectedPlace: Place | null;
+}
+
+const AddPlaceInfoForm = ({ selectedPlace }: Props) => {
   const {
     handleSubmit,
     register,
@@ -27,11 +34,12 @@ const AddPlaceInfoForm = () => {
   const [uploadImage, setUploadImage] = useState<File[] | undefined>();
   const [imageUrl, setImageUrl] = useState<string[]>();
 
+  const navigation = useNavigate();
+
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
 
     const filesArray: File[] = Array.from(e.target.files);
-
     const imageUrlArray: string[] = [];
 
     for (let i = 0; i < filesArray.length; i++) {
@@ -41,7 +49,6 @@ const AddPlaceInfoForm = () => {
         imageUrlArray.push(reader.result as string);
         setImageUrl(imageUrlArray);
       };
-
       reader.readAsDataURL(filesArray[i]);
     }
 
@@ -49,11 +56,17 @@ const AddPlaceInfoForm = () => {
   };
 
   const onSubmitAddPlace: SubmitHandler<Inputs> = (data) => {
-    // place review, category, menu ...
+    if (!selectedPlace) return null;
+
+    // firebase storage에 image upload
+    if (uploadImage) uploadFile(`${selectedPlace.title}`, uploadImage);
+
+    // firebase database에 place upload
+    const review: PlaceReview = { ...selectedPlace, ...data };
+    setPlace(review);
+
     // TODO : 장소 추가 후 해당 장소로 이동
-    console.log("submit", data);
-    // TODO : 장소명 수정하기
-    if (uploadImage) uploadFile("장소명", uploadImage);
+    navigation("/");
   };
 
   return (

@@ -14,11 +14,11 @@ const routeData = [
     element: <Signup />,
   },
   {
-    path: "login",
+    path: "/login",
     element: <Login />,
   },
   {
-    path: "addplace",
+    path: "/addplace",
     element: <AddPlace />,
   },
 ];

@@ -4,24 +4,17 @@ import * as InputError from "../../errors/inputErrorMessage";
 import { useEffect, useState } from "react";
 import { search } from "../../api/naver/search";
 import { geocoder, markerMap } from "../../api/naver/map";
+import { Place } from "../../types/place";
 
 interface Inputs {
   place: string;
 }
 
-interface Place {
-  address: string;
-  category: string;
-  description: string;
-  link: string;
-  mapx: string;
-  mapy: string;
-  roadAddress: string;
-  telephone: string;
-  title: string;
+interface Props {
+  onPlaceSelect: (place: Place) => void;
 }
 
-const SearchPlaceForm = () => {
+const SearchPlaceForm = ({ onPlaceSelect }: Props) => {
   const {
     handleSubmit,
     register,
@@ -71,6 +64,8 @@ const SearchPlaceForm = () => {
     const y = geocoder(place.mapx, place.mapy).y;
 
     markerMap(x, y);
+
+    onPlaceSelect(place);
   };
 
   return (
