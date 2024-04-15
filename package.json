@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/gravatar": "^1.8.6",
+    "axios": "^1.6.8",
     "firebase": "^10.9.0",
     "gravatar": "^1.8.2",
     "react": "^18.2.0",

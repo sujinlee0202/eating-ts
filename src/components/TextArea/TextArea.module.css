@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.label {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.textarea {
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 8px;
+  resize: none;
+
+  &.error {
+    border: 1px solid red;
+    outline: 1px solid red;
+  }
+
+  &.largeTextarea {
+    height: 400px;
+  }
+
+  &.mediumTextarea {
+    height: 200px;
+  }
+
+  &.smallTextarea {
+    height: 100px;
+  }
+}
+
+.errorMessage {
+  color: red;
+  font-size: small;
+}

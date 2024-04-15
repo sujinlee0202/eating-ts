@@ -6,7 +6,7 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import { app } from "./firebase";
+import { app } from ".";
 
 type useIdPassword = {
   email: string;
