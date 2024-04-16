@@ -13,6 +13,25 @@
   transform: translateX(0);
 }
 
+.location {
+  width: 100%;
+  font-weight: bold;
+  font-size: larger;
+  padding: 10px 20px;
+}
+
+.recommend {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.id {
+  color: #0054cc;
+}
+
 .sidebarClose {
   transform: translateX(-450px);
 }

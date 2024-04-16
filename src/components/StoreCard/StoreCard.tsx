@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./StoreCard.module.css";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import store1 from "../../assets/store1_1.jpg";
+import { PlaceReview } from "../../types/place";
+import { downloadFile } from "../../api/firebase/storage";
+import ImageCaruosel from "../ImageCarousel/ImageCaruosel";
 
-const StoreCard = () => {
+interface Props {
+  place: PlaceReview;
+}
+
+const StoreCard = ({ place }: Props) => {
   const [saved, setSaved] = useState(false);
+  const [images, setImages] = useState<string[]>();
+
+  const { title, category, review } = place;
+
+  useEffect(() => {
+    downloadFile(title).then((data) => setImages(data));
+  }, [title]);
 
   const handleSave = () => {
     setSaved((prev) => !prev);
@@ -13,12 +26,12 @@ const StoreCard = () => {
   return (
     <div className={styles.container}>
       <div className={styles.imageWrapper}>
-        <img src={store1} className={styles.image} alt='가게명' />
+        {images && <ImageCaruosel imageUrl={images} />}
       </div>
       <div className={styles.storeInfo}>
         <div className={styles.titleContainer}>
-          <p className={styles.title}>방콕상회</p>
-          <p className={styles.category}>태국음식</p>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.category}>{category}</p>
         </div>
         {saved ? (
           <AiFillStar onClick={handleSave} />
@@ -26,9 +39,10 @@ const StoreCard = () => {
           <AiOutlineStar onClick={handleSave} />
         )}
       </div>
-      <p className={`${styles.storeDesc} ${styles.ellipsis}`}>
-        식당 소개글 식당 소개글 식당 소개글 식당 소개글 식당 소개글 식당 소개글
-      </p>
+      <div className={styles.reviewContainer}>
+        <div className={styles.reviewArrow}></div>
+        <p className={`${styles.ellipsis}`}>{review}</p>
+      </div>
     </div>
   );
 };

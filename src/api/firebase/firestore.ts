@@ -4,7 +4,9 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   getFirestore,
+  query,
   setDoc,
 } from "firebase/firestore";
 import { app } from ".";
@@ -45,9 +47,13 @@ export const setPlace = async (placeReview: PlaceReview) => {
 
 // place review 불러오기
 export const getPlace = async () => {
-  const PlaceReviewRef = doc(db, "place");
-  const placeReviewDocSnap = await getDoc(PlaceReviewRef);
+  const placeQuery = query(collection(db, "place"));
+  const placeSnap = await getDocs(placeQuery);
 
-  if (placeReviewDocSnap.exists()) return placeReviewDocSnap.data();
-  else return undefined;
+  const postData: PlaceReview[] = [];
+  placeSnap.forEach((doc) => {
+    postData.push(doc.data() as PlaceReview);
+  });
+
+  return postData;
 };
