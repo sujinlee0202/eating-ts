@@ -69,12 +69,7 @@ const ImageCaruosel = ({ imageUrl }: Props) => {
       )}
 
       {/** photos */}
-      <div
-        className={styles.photos}
-        style={{
-          width: imageUrl.length * 460,
-        }}
-      >
+      <div className={styles.photos}>
         {imageUrl.map((item: string, index: number) => (
           <div
             key={index}

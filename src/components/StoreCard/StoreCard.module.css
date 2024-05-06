@@ -1,13 +1,15 @@
 .container {
   width: 100%;
   padding: 0 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  cursor: pointer;
 }
 
 .imageWrapper {
   width: 100%;
   height: 200px;
   overflow: hidden;
+  position: relative;
 }
 
 .image {
@@ -21,7 +23,7 @@
 }
 
 .storeInfo {
-  margin: 10px 0;
+  margin: 10px 0 20px 0;
   padding: 0 4px;
   display: flex;
   align-items: center;
@@ -44,12 +46,42 @@
   color: gray;
 }
 
-.ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.reviewContainer {
+  background-color: #e5f4f9;
+  width: 100%;
+  height: 70px;
+  vertical-align: middle;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+
+  &:hover {
+    background-color: #cceaf4;
+  }
 }
 
-.storeDesc {
-  padding: 0 4px;
+.reviewArrow {
+  width: 20px;
+  height: 20px;
+  background-color: #e5f4f9;
+  z-index: 10;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translatex(-50%) rotate(45deg);
+}
+
+.reviewContainer:hover .reviewArrow,
+.reviewArrow:hover {
+  background-color: #cceaf4;
+}
+
+.ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: small;
 }

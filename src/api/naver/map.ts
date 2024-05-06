@@ -46,3 +46,19 @@ export const geocoder = (x: string, y: string) => {
 
   return { x: transX, y: transY };
 };
+
+// 좌표를 지번 이름으로 변경하는 함수
+export const reverseGeocoder = (
+  center: naver.maps.Coord,
+  callback: (address: string) => void
+) => {
+  return naver.maps.Service.reverseGeocode(
+    { coords: new naver.maps.LatLng(center.y, center.x) },
+    function (status, response) {
+      if (status !== 200) console.log("잘못된 접근입니다.");
+
+      const address = response.v2.address.jibunAddress;
+      callback(address);
+    }
+  );
+};
