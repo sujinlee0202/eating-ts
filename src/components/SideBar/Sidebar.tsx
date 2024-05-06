@@ -13,6 +13,7 @@ const Sidebar = () => {
   const [id, setId] = useState<string | undefined | null>(undefined);
   const { parsedSessionStorageUser } = useContext(loginContext);
 
+  // place 불러오기
   useEffect(() => {
     getPlace().then((data) => setPlace(data));
   }, []);
@@ -36,10 +37,12 @@ const Sidebar = () => {
       <img src={logo} alt='eating-logo' className={styles.logo} />
       <h1 className={styles.location}>영등포구 신길 7동</h1>
       <div className={styles.storeContainer}>
-        <div className={styles.recommend}>
-          <p className={styles.id}>{id}</p>
-          <p>님을 위한 추천 PICK!! </p>
-        </div>
+        {id && (
+          <div className={styles.recommend}>
+            <p className={styles.id}>{id}</p>
+            <p>님을 위한 추천 PICK!! </p>
+          </div>
+        )}
         {place?.map((place, index) => (
           <StoreCard place={place} key={index} />
         ))}
