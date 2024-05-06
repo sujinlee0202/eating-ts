@@ -1,49 +1,54 @@
 import styles from "./Sidebar.module.css";
 import logo from "../../assets/eating_logo.png";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import StoreCard from "../StoreCard/StoreCard";
-import { getPlace, getUser } from "../../api/firebase/firestore";
+import { getPlace } from "../../api/firebase/firestore";
 import { PlaceReview } from "../../types/place";
-import { loginContext } from "../../context/loginContext";
+import { calculateDistance, sortByDistance } from "../../utils/distance";
+import { reverseGeocoder } from "../../api/naver/map";
 
-const Sidebar = () => {
+interface Props {
+  map: naver.maps.Map;
+  center: naver.maps.Coord;
+}
+
+const Sidebar = ({ map, center }: Props) => {
   const [open, setOpen] = useState(true);
   const [place, setPlace] = useState<PlaceReview[]>();
-  const [id, setId] = useState<string | undefined | null>(undefined);
-  const { parsedSessionStorageUser } = useContext(loginContext);
+  const [jibunAddress, setJibunAddress] = useState<string>();
 
   // place 불러오기
   useEffect(() => {
     getPlace().then((data) => setPlace(data));
   }, []);
 
+  // 좌표를 지번 이름으로 변경하기
   useEffect(() => {
-    if (parsedSessionStorageUser?.email) {
-      getUser(parsedSessionStorageUser?.email).then((data) => {
-        data && setId(data.name as string);
-      });
-    }
-  }, [parsedSessionStorageUser]);
+    reverseGeocoder(center, function (address: string) {
+      setJibunAddress(address);
+    });
+  }, [center]);
 
   const handleClose = () => {
     setOpen((prev) => !prev);
   };
+
+  if (!place) return null;
+
+  // place 배열을 가까운 순서로 정렬
+  sortByDistance(map, place, center).map((place) => {
+    calculateDistance(map, place, center);
+  });
 
   return (
     <nav
       className={`${styles.sidebarContainer} ${!open && styles.sidebarClose}`}
     >
       <img src={logo} alt='eating-logo' className={styles.logo} />
-      <h1 className={styles.location}>영등포구 신길 7동</h1>
+      <h1 className={styles.location}>{jibunAddress}</h1>
       <div className={styles.storeContainer}>
-        {id && (
-          <div className={styles.recommend}>
-            <p className={styles.id}>{id}</p>
-            <p>님을 위한 추천 PICK!! </p>
-          </div>
-        )}
-        {place?.map((place, index) => (
+        {place?.slice(0, 20).map((place, index) => (
           <StoreCard place={place} key={index} />
         ))}
       </div>
