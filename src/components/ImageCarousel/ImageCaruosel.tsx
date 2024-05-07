@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./ImageCarousel.module.css";
 import EllipsisButton from "../EllipsisButton/EllipsisButton";
 import ArrowButton from "../ArrowButton/ArrowButton";
+import { MdImageNotSupported } from "react-icons/md";
 
 interface Props {
   imageUrl: string[];
@@ -70,19 +71,26 @@ const ImageCaruosel = ({ imageUrl }: Props) => {
 
       {/** photos */}
       <div className={styles.photos}>
-        {imageUrl.map((item: string, index: number) => (
-          <div
-            key={index}
-            className={`
+        {imageUrl.length === 0 ? (
+          <div className={styles.noImageIconWrapper}>
+            <MdImageNotSupported className={styles.noImageIcon} />
+            <p className={styles.noImageText}>NO IMAGE</p>
+          </div>
+        ) : (
+          imageUrl.map((item: string, index: number) => (
+            <div
+              key={index}
+              className={`
               ${styles.photo} 
               ${index === selectedId && styles.selected}
               ${index === prevId && styles.prev}
               ${index === nextId && styles.next}
             `}
-          >
-            <img src={item} className={styles.image}></img>
-          </div>
-        ))}
+            >
+              <img src={item} className={styles.image}></img>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
