@@ -53,7 +53,7 @@ const ImageCaruosel = ({ imageUrl }: Props) => {
   return (
     <div className={styles.photoWrapper}>
       {/** arrow button */}
-      {imageUrl.length !== 1 && (
+      {imageUrl.length > 1 && (
         <>
           <div className={styles.arrowButtonConatiner}>
             <div className={styles.buttonWrapper}>
