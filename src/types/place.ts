@@ -1,6 +1,7 @@
 import { Inputs } from "../components/AddPlaceInfoForm/AddPlaceInfoForm";
 
 export interface Place {
+  id: string;
   address: string;
   category: string;
   description: string;

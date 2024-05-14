@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { app } from ".";
 import { User } from "firebase/auth";
+import { generateUniqueId } from "../../utils/generateUniqueId";
 
 const db = getFirestore(app);
 
@@ -42,7 +43,10 @@ export const getUser = async (email: string) => {
 // place review 저장
 export const setPlace = async (placeReview: PlaceReview) => {
   const placeReviewRef = collection(db, "place");
-  await setDoc(doc(placeReviewRef, placeReview.title), placeReview);
+  const uniqueId = generateUniqueId();
+  const placeReviewWithId = { ...placeReview, id: uniqueId };
+
+  await setDoc(doc(placeReviewRef, placeReviewWithId.title), placeReviewWithId);
 };
 
 // place review 불러오기

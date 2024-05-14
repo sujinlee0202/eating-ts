@@ -3,6 +3,7 @@ import Home from "./pages/home";
 import Signup from "./pages/Signup/signup";
 import Login from "./pages/Login/login";
 import AddPlace from "./pages/AddPlace/addplace";
+import Detail from "./pages/Detail/detail";
 
 const routeData = [
   {
@@ -20,6 +21,10 @@ const routeData = [
   {
     path: "/addplace",
     element: <AddPlace />,
+  },
+  {
+    path: "/place/:placeId",
+    element: <Detail />,
   },
 ];
 

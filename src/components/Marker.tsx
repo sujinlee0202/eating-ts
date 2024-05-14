@@ -5,9 +5,10 @@ interface Props {
   map: undefined | naver.maps.Map;
   lat: string;
   lon: string;
+  onClick: () => void;
 }
 
-const Marker = ({ map, lat, lon }: Props) => {
+const Marker = ({ map, lat, lon, onClick }: Props) => {
   useEffect(() => {
     const marker: naver.maps.Marker = new naver.maps.Marker({
       map: map,
@@ -17,10 +18,14 @@ const Marker = ({ map, lat, lon }: Props) => {
       ),
     });
 
+    marker.addListener("click", () => {
+      onClick && onClick();
+    });
+
     return () => {
       marker.setMap(null);
     };
-  }, [lat, lon, map]);
+  }, [lat, lon, map, onClick]);
 
   return null;
 };
