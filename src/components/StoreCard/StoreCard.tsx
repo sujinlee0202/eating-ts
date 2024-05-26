@@ -4,19 +4,17 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { PlaceReview } from "../../types/place";
 import { downloadFile } from "../../api/firebase/storage";
 import ImageCaruosel from "../ImageCarousel/ImageCaruosel";
-import { useNavigate } from "react-router-dom";
 
 interface Props {
   place: PlaceReview;
+  onClickDetail: (id: string) => void;
 }
 
-const StoreCard = ({ place }: Props) => {
+const StoreCard = ({ place, onClickDetail }: Props) => {
   const [saved, setSaved] = useState(false);
   const [images, setImages] = useState<string[]>();
 
-  const { title, category, review, id } = place;
-
-  const navigate = useNavigate();
+  const { title, category, review } = place;
 
   useEffect(() => {
     downloadFile(title).then((data) => setImages(data));
@@ -26,12 +24,12 @@ const StoreCard = ({ place }: Props) => {
     setSaved((prev) => !prev);
   };
 
-  const handleDetail = () => {
-    navigate(`/place/${id}`);
+  const handleDetailClick = () => {
+    onClickDetail(place.id);
   };
 
   return (
-    <div className={styles.container} onClick={handleDetail}>
+    <div className={styles.container} onClick={handleDetailClick}>
       <div className={styles.imageWrapper}>
         {images && <ImageCaruosel imageUrl={images} />}
       </div>
