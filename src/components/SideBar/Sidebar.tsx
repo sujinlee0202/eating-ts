@@ -7,6 +7,7 @@ import { getPlace } from "../../api/firebase/firestore";
 import { PlaceReview } from "../../types/place";
 import { calculateDistance, sortByDistance } from "../../utils/distance";
 import { reverseGeocoder } from "../../api/naver/map";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 interface Props {
   map: naver.maps.Map;
@@ -14,9 +15,13 @@ interface Props {
 }
 
 const Sidebar = ({ map, center }: Props) => {
-  const [open, setOpen] = useState(true);
+  const { placeId } = useParams();
+  const [openSidebar, setOpenSidebar] = useState(true);
   const [place, setPlace] = useState<PlaceReview[]>();
   const [jibunAddress, setJibunAddress] = useState<string>();
+  const [openDetail, setOpenDetail] = useState(placeId ? true : false);
+
+  const navigate = useNavigate();
 
   // place 불러오기
   useEffect(() => {
@@ -31,7 +36,7 @@ const Sidebar = ({ map, center }: Props) => {
   }, [center]);
 
   const handleClose = () => {
-    setOpen((prev) => !prev);
+    setOpenSidebar((prev) => !prev);
   };
 
   if (!place) return null;
@@ -41,24 +46,50 @@ const Sidebar = ({ map, center }: Props) => {
     calculateDistance(map, place, center);
   });
 
+  const onClickDetail = (id: string) => {
+    const selectedPlace = place.find((p) => p.id === id);
+    if (selectedPlace) {
+      setOpenDetail(true);
+      navigate(`/place/${id}`, { state: selectedPlace });
+    }
+  };
+
+  const onClickDetailClose = () => {
+    setOpenDetail(false);
+    navigate("/");
+  };
+
   return (
     <nav
-      className={`${styles.sidebarContainer} ${!open && styles.sidebarClose}`}
+      className={`
+      ${styles.sidebarContainer} 
+      ${!openSidebar && styles.sidebarClose}
+      ${openDetail && !openSidebar && styles.sidebarAndDetailClose}
+    `}
     >
       <img src={logo} alt='eating-logo' className={styles.logo} />
       <h1 className={styles.location}>{jibunAddress}</h1>
       <div className={styles.storeContainer}>
         {place?.slice(0, 20).map((place, index) => (
-          <StoreCard place={place} key={index} />
+          <StoreCard place={place} key={index} onClickDetail={onClickDetail} />
         ))}
       </div>
-      <button className={styles.btnClose} onClick={handleClose}>
-        {open ? (
+      <button
+        className={`${styles.btnClose} ${openDetail && styles.openDetail}`}
+        onClick={handleClose}
+      >
+        {openSidebar ? (
           <AiOutlineLeft className={styles.arrowIcon} />
         ) : (
           <AiOutlineRight className={styles.arrowIcon} />
         )}
       </button>
+      <Outlet />
+      {openSidebar && openDetail && (
+        <button className={styles.detailClose} onClick={onClickDetailClose}>
+          close
+        </button>
+      )}
     </nav>
   );
 };

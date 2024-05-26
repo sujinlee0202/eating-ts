@@ -1,0 +1,11 @@
+.container {
+  margin-left: 450px;
+  background-color: antiquewhite;
+  width: 450px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+}

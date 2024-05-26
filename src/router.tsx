@@ -9,6 +9,12 @@ const routeData = [
   {
     path: "/",
     element: <Home />,
+    children: [
+      {
+        path: "/place/:placeId",
+        element: <Detail />,
+      },
+    ],
   },
   {
     path: "/signup",
@@ -21,10 +27,6 @@ const routeData = [
   {
     path: "/addplace",
     element: <AddPlace />,
-  },
-  {
-    path: "/place/:placeId",
-    element: <Detail />,
   },
 ];
 
