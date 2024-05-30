@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 450px;
-  background-color: antiquewhite;
+  background-color: whitesmoke;
   width: 450px;
   height: 100%;
   position: absolute;
@@ -10,7 +10,7 @@
   left: 0;
   transition: transform 0.3s ease;
   transform: translateX(0);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .imageContainer {
@@ -50,6 +50,9 @@
   align-items: center;
   justify-content: space-around;
   background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 50px;
 }
 
 .homeTab,
@@ -61,4 +64,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.currentTab {
+    border-bottom: 3px solid #000;
+  }
+}
+
+.scrolledHeader {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 16px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 450px;
+  z-index: 2000;
+  background-color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.shadow {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

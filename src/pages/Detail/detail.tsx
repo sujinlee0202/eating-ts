@@ -8,20 +8,28 @@ import { PlaceReview } from "../../types/place";
 
 const Detail = () => {
   const location = useLocation();
-  const { title, mapx, mapy, id }: PlaceReview = location.state;
+  const { title, mapx, mapy, id, category, description }: PlaceReview =
+    location.state;
   const clickedGeocoder = geocoder(mapx, mapy);
   const [images, setImages] = useState<string[]>();
   const [showUI, setShowUI] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const detailRef = useRef<HTMLDivElement>(null);
+  const currentTab = location.pathname.split("/").pop();
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = detailRef.current?.scrollTop;
-      // 스크롤 위치가 특정 값 이상이면 UI를 보여줌
-      if (scrollPosition) {
+      if (scrollPosition && scrollPosition > 0) {
         setShowUI(true);
       } else {
         setShowUI(false);
+      }
+
+      if (scrollPosition && scrollPosition >= 260) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
       }
     };
 
@@ -38,41 +46,64 @@ const Detail = () => {
   }, [title]);
 
   return (
-    <div className={styles.container} ref={detailRef}>
-      <div className={styles.imageContainer}>
-        {images && <ImageCaruosel imageUrl={images} />}
-      </div>
-      <div className={styles.placeWrapper}>
-        <p className={styles.title}>가게명</p>
-        <p className={styles.category}>카테고리</p>
-        <p className={styles.description}>한줄 설명 한줄 설명 한줄 설명</p>
-      </div>
-      <div className={styles.detailTab}>
-        <NavLink
-          to={`/place/${id}/home`}
-          className={styles.homeTab}
-          state={location.state}
+    <>
+      {showUI && (
+        <div
+          className={`
+            ${styles.scrolledHeader} 
+            ${showUI ? styles.show : ""} 
+            ${!isSticky && styles.shadow}
+          `}
         >
-          홈
-        </NavLink>
-        <NavLink
-          to={`/place/${id}/review`}
-          className={styles.reviewTab}
-          state={location.state}
-        >
-          리뷰
-        </NavLink>
-        <NavLink
-          to={`/place/${id}/photo`}
-          className={styles.photoTab}
-          state={location.state}
-        >
-          사진
-        </NavLink>
+          <p className={styles.scrolledHeaderText}>{title}</p>
+        </div>
+      )}
+      <div className={styles.container} ref={detailRef}>
+        <div className={styles.imageContainer}>
+          {images && <ImageCaruosel imageUrl={images} />}
+        </div>
+        <div className={styles.placeWrapper}>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.category}>{category}</p>
+          <p className={styles.description}>
+            {description} 설명 한줄 설명 한줄 설명
+          </p>
+        </div>
+        <div className={`${styles.detailTab} ${isSticky && styles.shadow}`}>
+          <NavLink
+            to={`/place/${id}/home`}
+            className={`
+            ${styles.homeTab} 
+            ${(currentTab === "home" || currentTab === id) && styles.currentTab}
+          `}
+            state={location.state}
+          >
+            홈
+          </NavLink>
+          <NavLink
+            to={`/place/${id}/review`}
+            className={`
+            ${styles.reviewTab} 
+            ${currentTab === "review" && styles.currentTab}
+          `}
+            state={location.state}
+          >
+            리뷰
+          </NavLink>
+          <NavLink
+            to={`/place/${id}/photo`}
+            className={`
+            ${styles.photoTab} 
+            ${currentTab === "photo" && styles.currentTab}
+          `}
+            state={location.state}
+          >
+            사진
+          </NavLink>
+        </div>
+        <Outlet />
       </div>
-      {showUI && <div>스크롤되었다!</div>}
-      <Outlet />
-    </div>
+    </>
   );
 };
 
