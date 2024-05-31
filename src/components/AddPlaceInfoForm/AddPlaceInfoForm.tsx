@@ -16,6 +16,7 @@ export interface Inputs {
   time: string;
   menu: string;
   category: string;
+  description: string;
 }
 
 interface Props {
@@ -81,6 +82,16 @@ const AddPlaceInfoForm = ({ selectedPlace }: Props) => {
         {imageUrl && <ImageCaruosel imageUrl={imageUrl} />}
         {!imageUrl && <p>사진이 표시될 영역입니다.</p>}
       </div>
+
+      <Input
+        type='text'
+        label='소개글'
+        placeholder='소개글을 입력하세요'
+        register={register("description", {
+          required: InputError.ERROR_MSG_REQUIRED,
+        })}
+        error={errors.category}
+      />
 
       <TextArea
         label='리뷰'
