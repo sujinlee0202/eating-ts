@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { PlaceReview } from "../../types/place";
 import { useEffect, useState } from "react";
 import { downloadFile } from "../../api/firebase/storage";
+import styles from "./PhotoTab.module.css";
 
 const PhotoTab = () => {
   const location = useLocation();
@@ -13,9 +14,9 @@ const PhotoTab = () => {
   }, [title]);
 
   return (
-    <div>
+    <div className={styles.container}>
       {images?.map((url) => (
-        <img src={url} style={{ width: "100%", height: 300 }}></img>
+        <img src={url} className={styles.photo}></img>
       ))}
     </div>
   );

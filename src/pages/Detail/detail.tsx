@@ -79,7 +79,7 @@ const Detail = () => {
             state={location.state}
           >
             <p>홈</p>
-            {currentTab === "home" && (
+            {(currentTab === "home" || currentTab === id) && (
               <div className={styles.currentBorder}></div>
             )}
           </NavLink>

@@ -10,7 +10,20 @@
   left: 0;
   transition: transform 0.3s ease;
   transform: translateX(0);
+  box-shadow: rgba(0, 0, 0, 0.1) 10px 0px 15px;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #ededed;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #cfcfcf;
+    border-radius: 12px;
+  }
 }
 
 .imageContainer {
@@ -26,6 +39,11 @@
   background-color: #fff;
   margin-top: 200px;
   margin-bottom: 8px;
+}
+
+.placeImage {
+  width: 100%;
+  height: 100%;
 }
 
 .title {

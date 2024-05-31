@@ -9,7 +9,7 @@ import styles from "./HomeTab.module.css";
 
 const HomeTab = () => {
   const location = useLocation();
-  const { address }: PlaceReview = location.state;
+  const { address, time, phone }: PlaceReview = location.state;
 
   return (
     <div className={styles.container}>
@@ -21,11 +21,11 @@ const HomeTab = () => {
         </div>
         <div className={styles.time}>
           <MdOutlineAccessTimeFilled />
-          <p>영업시간</p>
+          <p>{time}</p>
         </div>
         <div className={styles.phone}>
           <MdPhone />
-          <p>전화번호</p>
+          <p>{phone}</p>
         </div>
       </div>
       <p className={styles.title}>메뉴</p>

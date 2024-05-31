@@ -1,11 +1,27 @@
 import { useLocation } from "react-router-dom";
 import { PlaceReview } from "../../types/place";
+import styles from "./ReviewTab.module.css";
+import Comment from "./Comment";
 
 const ReviewTab = () => {
   const location = useLocation();
   const { review }: PlaceReview = location.state;
 
-  return <div>{review}</div>;
+  return (
+    <div className={styles.container}>
+      <div className={styles.reviewContainer}>
+        <p className={styles.title}>리뷰</p>
+        {review}
+      </div>
+      <div className={styles.commentContainer}>
+        <div className={styles.commentTitleWrapper}>
+          <p className={styles.title}>댓글</p>
+          <button className={styles.createComment}>작성하기</button>
+        </div>
+        <Comment />
+      </div>
+    </div>
+  );
 };
 
 export default ReviewTab;
