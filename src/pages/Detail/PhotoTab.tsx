@@ -1,17 +1,14 @@
 import { useLocation } from "react-router-dom";
 import { PlaceReview } from "../../types/place";
-import { useEffect, useState } from "react";
-import { downloadFile } from "../../api/firebase/storage";
 import styles from "./PhotoTab.module.css";
+import { useQuery } from "@tanstack/react-query";
 
 const PhotoTab = () => {
   const location = useLocation();
-  const { title }: PlaceReview = location.state;
-  const [images, setImages] = useState<string[]>();
-
-  useEffect(() => {
-    downloadFile(title).then((data) => setImages(data));
-  }, [title]);
+  const { id }: PlaceReview = location.state;
+  const { data: images } = useQuery<string[]>({
+    queryKey: ["images", id],
+  });
 
   return (
     <div className={styles.container}>

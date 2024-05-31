@@ -4,20 +4,35 @@ import styles from "./Menu.module.css";
 import { loginContext } from "../../context/loginContext";
 import { Link } from "react-router-dom";
 import { getUser } from "../../api/firebase/firestore";
+import { useQuery } from "@tanstack/react-query";
 
 const Menu = () => {
   const { parsedSessionStorageUser, setUser } = useContext(loginContext);
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["user"],
+    queryFn: () => {
+      if (parsedSessionStorageUser?.email) {
+        return getUser(parsedSessionStorageUser?.email);
+      }
+    },
+    staleTime: 5000,
+  });
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    if (parsedSessionStorageUser?.email) {
-      getUser(parsedSessionStorageUser?.email).then((data) => {
-        if (data) {
-          if (data.admin) setIsAdmin(true);
-        }
-      });
-    }
-  }, [parsedSessionStorageUser]);
+    if (user?.admin) setIsAdmin(true);
+  }, [user]);
+
+  // 로딩 중이거나 에러가 발생한 경우 처리
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error occurred while loading user data</div>;
+
+  // user가 undefined인 경우 처리
+  if (!user) return <div>User data not available</div>;
 
   const handleLogout = () => {
     logout().then(() => {

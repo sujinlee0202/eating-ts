@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./StoreCard.module.css";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { PlaceReview } from "../../types/place";
 import { downloadFile } from "../../api/firebase/storage";
 import ImageCaruosel from "../ImageCarousel/ImageCaruosel";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   place: PlaceReview;
@@ -11,14 +12,13 @@ interface Props {
 }
 
 const StoreCard = ({ place, onClickDetail }: Props) => {
+  const { data } = useQuery({
+    queryKey: ["images", place.id],
+    queryFn: () => downloadFile(place.title),
+  });
+
   const [saved, setSaved] = useState(false);
-  const [images, setImages] = useState<string[]>();
-
   const { title, category, review } = place;
-
-  useEffect(() => {
-    downloadFile(title).then((data) => setImages(data));
-  }, [title]);
 
   const handleSave = () => {
     setSaved((prev) => !prev);
@@ -31,7 +31,7 @@ const StoreCard = ({ place, onClickDetail }: Props) => {
   return (
     <div className={styles.container} onClick={handleDetailClick}>
       <div className={styles.imageWrapper}>
-        {images && <ImageCaruosel imageUrl={images} />}
+        {data && <ImageCaruosel imageUrl={data} />}
       </div>
       <div className={styles.storeInfo}>
         <div className={styles.titleContainer}>

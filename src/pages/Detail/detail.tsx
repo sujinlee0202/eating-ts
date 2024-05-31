@@ -3,19 +3,23 @@ import styles from "./detail.module.css";
 import { useEffect, useRef, useState } from "react";
 import { clickPlaceMap, geocoder } from "../../api/naver/map";
 import ImageCaruosel from "../../components/ImageCarousel/ImageCaruosel";
-import { downloadFile } from "../../api/firebase/storage";
 import { PlaceReview } from "../../types/place";
+import { useQuery } from "@tanstack/react-query";
 
 const Detail = () => {
   const location = useLocation();
   const { title, mapx, mapy, id, category, description }: PlaceReview =
     location.state;
+  const { data: images } = useQuery<string[]>({
+    queryKey: ["images", id],
+  });
+
   const clickedGeocoder = geocoder(mapx, mapy);
-  const [images, setImages] = useState<string[]>();
-  const [showUI, setShowUI] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
   const detailRef = useRef<HTMLDivElement>(null);
   const currentTab = location.pathname.split("/").pop();
+
+  const [showUI, setShowUI] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,10 +44,6 @@ const Detail = () => {
   useEffect(() => {
     clickPlaceMap(clickedGeocoder.x, clickedGeocoder.y);
   }, [clickedGeocoder]);
-
-  useEffect(() => {
-    downloadFile(title).then((data) => setImages(data));
-  }, [title]);
 
   return (
     <>
