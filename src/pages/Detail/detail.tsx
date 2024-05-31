@@ -78,7 +78,10 @@ const Detail = () => {
           `}
             state={location.state}
           >
-            홈
+            <p>홈</p>
+            {currentTab === "home" && (
+              <div className={styles.currentBorder}></div>
+            )}
           </NavLink>
           <NavLink
             to={`/place/${id}/review`}
@@ -88,7 +91,10 @@ const Detail = () => {
           `}
             state={location.state}
           >
-            리뷰
+            <p>리뷰</p>
+            {currentTab === "review" && (
+              <div className={styles.currentBorder}></div>
+            )}
           </NavLink>
           <NavLink
             to={`/place/${id}/photo`}
@@ -98,7 +104,10 @@ const Detail = () => {
           `}
             state={location.state}
           >
-            사진
+            <p>사진</p>
+            {currentTab === "photo" && (
+              <div className={styles.currentBorder}></div>
+            )}
           </NavLink>
         </div>
         <Outlet />
