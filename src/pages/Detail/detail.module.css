@@ -1,6 +1,8 @@
 .container {
+  display: flex;
+  flex-direction: column;
   margin-left: 450px;
-  background-color: antiquewhite;
+  background-color: whitesmoke;
   width: 450px;
   height: 100%;
   position: absolute;
@@ -8,4 +10,109 @@
   left: 0;
   transition: transform 0.3s ease;
   transform: translateX(0);
+  box-shadow: rgba(0, 0, 0, 0.1) 10px 0px 15px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #ededed;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #cfcfcf;
+    border-radius: 12px;
+  }
+}
+
+.imageContainer {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+}
+
+.placeWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: #fff;
+  margin-top: 200px;
+  margin-bottom: 8px;
+}
+
+.placeImage {
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.category {
+  color: gray;
+  margin-bottom: 8px;
+}
+
+.description {
+  color: gray;
+}
+
+.detailTab {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 50px;
+}
+
+.homeTab,
+.reviewTab,
+.photoTab {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+
+  &.currentTab {
+    font-weight: bold;
+  }
+}
+
+.currentBorder {
+  width: 100%;
+  border: 1px solid #000;
+  position: absolute;
+  bottom: 0;
+}
+
+.scrolledHeader {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 16px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 450px;
+  z-index: 2000;
+  background-color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.shadow {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

@@ -62,3 +62,22 @@ export const reverseGeocoder = (
     }
   );
 };
+
+// 장소 클릭시 지도
+export const clickPlaceMap = async (x: number, y: number) => {
+  const center: naver.maps.LatLng = new naver.maps.LatLng(x, y);
+
+  const mapDiv = new naver.maps.Map("map", {
+    center: center,
+    zoom: 16,
+  });
+
+  new naver.maps.Marker({
+    position: center,
+    map: mapDiv,
+  });
+
+  // 지도의 중심점을 왼쪽으로 이동시키기
+  const newCenter = new naver.maps.LatLng(x, y - 0.01);
+  mapDiv.setCenter(newCenter);
+};

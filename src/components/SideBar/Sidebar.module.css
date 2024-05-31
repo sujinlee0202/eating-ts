@@ -90,6 +90,14 @@
   margin-left: 900px;
   background-color: #fff;
   position: absolute;
-  top: 0;
+  top: 20px;
   left: 0;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #e5e5e5;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

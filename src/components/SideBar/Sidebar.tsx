@@ -1,7 +1,7 @@
 import styles from "./Sidebar.module.css";
 import logo from "../../assets/eating_logo.png";
 import { useEffect, useState } from "react";
-import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
+import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from "react-icons/ai";
 import StoreCard from "../StoreCard/StoreCard";
 import { getPlace } from "../../api/firebase/firestore";
 import { PlaceReview } from "../../types/place";
@@ -87,7 +87,7 @@ const Sidebar = ({ map, center }: Props) => {
       <Outlet />
       {openSidebar && openDetail && (
         <button className={styles.detailClose} onClick={onClickDetailClose}>
-          close
+          <AiOutlineClose />
         </button>
       )}
     </nav>
