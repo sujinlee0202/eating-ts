@@ -100,4 +100,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    background-color: #f6faff;
+    color: #5db2ff;
+  }
 }
