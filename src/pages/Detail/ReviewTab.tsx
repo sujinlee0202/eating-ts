@@ -11,7 +11,7 @@ const ReviewTab = () => {
     <div className={styles.container}>
       <div className={styles.reviewContainer}>
         <p className={styles.title}>리뷰</p>
-        {review}
+        <pre className={styles.review}>{review}</pre>
       </div>
       <div className={styles.commentContainer}>
         <div className={styles.commentTitleWrapper}>

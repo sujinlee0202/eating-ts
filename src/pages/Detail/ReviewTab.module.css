@@ -31,6 +31,10 @@
   font-size: 18px;
 }
 
+.review {
+  white-space: pre-wrap;
+}
+
 .profileWrapper {
   display: flex;
   align-items: center;
