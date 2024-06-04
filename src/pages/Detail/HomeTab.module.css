@@ -25,3 +25,13 @@
   font-weight: bold;
   font-size: 18px;
 }
+
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu {
+  line-height: 1.5;
+}

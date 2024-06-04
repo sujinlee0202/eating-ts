@@ -9,7 +9,7 @@ import styles from "./HomeTab.module.css";
 
 const HomeTab = () => {
   const location = useLocation();
-  const { address, time, phone }: PlaceReview = location.state;
+  const { address, time, phone, menu }: PlaceReview = location.state;
 
   return (
     <div className={styles.container}>
@@ -28,7 +28,10 @@ const HomeTab = () => {
           <p>{phone}</p>
         </div>
       </div>
-      <p className={styles.title}>메뉴</p>
+      <div className={styles.menuContainer}>
+        <p className={styles.title}>메뉴</p>
+        <pre className={styles.menu}>{menu}</pre>
+      </div>
     </div>
   );
 };
