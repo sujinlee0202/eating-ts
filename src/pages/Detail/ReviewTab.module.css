@@ -33,6 +33,7 @@
 
 .review {
   white-space: pre-wrap;
+  line-height: 1.5;
 }
 
 .profileWrapper {
