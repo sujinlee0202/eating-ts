@@ -2,6 +2,7 @@ import Marker from "./Marker";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getPlace } from "../api/firebase/firestore";
+import { PlaceReview } from "../types/place";
 
 interface Props {
   map: undefined | naver.maps.Map;
@@ -16,8 +17,8 @@ const Markers = ({ map }: Props) => {
 
   const navigate = useNavigate();
 
-  const handleDetail = (id: string) => {
-    navigate(`/place/${id}`);
+  const handleDetail = (place: PlaceReview) => {
+    navigate(`/place/${place.id}`, { state: place });
   };
 
   return (
@@ -29,7 +30,7 @@ const Markers = ({ map }: Props) => {
             map={map}
             lat={place.mapx}
             lon={place.mapy}
-            onClick={() => handleDetail(place.id)}
+            onClick={() => handleDetail(place)}
           ></Marker>
         );
       })}

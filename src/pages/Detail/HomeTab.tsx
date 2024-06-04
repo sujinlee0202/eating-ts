@@ -10,22 +10,23 @@ import styles from "./HomeTab.module.css";
 const HomeTab = () => {
   const location = useLocation();
   const { address, time, phone, menu }: PlaceReview = location.state;
+  const enter = time.split("\n").length;
 
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <p className={styles.title}>정보</p>
         <div className={styles.address}>
-          <MdLocationOn />
-          <p>{address}</p>
+          <MdLocationOn className={styles.icon} />
+          <p className={styles.text}>{address}</p>
         </div>
-        <div className={styles.time}>
-          <MdOutlineAccessTimeFilled />
-          <p>{time}</p>
+        <div className={`${styles.time} ${enter !== 1 && styles.isEnter}`}>
+          <MdOutlineAccessTimeFilled className={styles.icon} />
+          <pre className={styles.timeText}>{time}</pre>
         </div>
         <div className={styles.phone}>
-          <MdPhone />
-          <p>{phone}</p>
+          <MdPhone className={styles.icon} />
+          <p className={styles.text}>{phone}</p>
         </div>
       </div>
       <div className={styles.menuContainer}>

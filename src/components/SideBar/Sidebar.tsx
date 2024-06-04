@@ -6,7 +6,7 @@ import StoreCard from "../StoreCard/StoreCard";
 import { getPlace } from "../../api/firebase/firestore";
 import { calculateDistance, sortByDistance } from "../../utils/distance";
 import { reverseGeocoder } from "../../api/naver/map";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
@@ -66,7 +66,9 @@ const Sidebar = ({ map, center }: Props) => {
       ${openDetail && !openSidebar && styles.sidebarAndDetailClose}
     `}
     >
-      <img src={logo} alt='eating-logo' className={styles.logo} />
+      <Link to='/'>
+        <img src={logo} alt='eating-logo' className={styles.logo} />
+      </Link>
       <h1 className={styles.location}>{jibunAddress}</h1>
       <div className={styles.storeContainer}>
         {data?.slice(0, 20).map((place, index) => (
