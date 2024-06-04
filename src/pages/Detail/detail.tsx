@@ -65,9 +65,7 @@ const Detail = () => {
         <div className={styles.placeWrapper}>
           <p className={styles.title}>{title}</p>
           <p className={styles.category}>{category}</p>
-          <p className={styles.description}>
-            {description} 설명 한줄 설명 한줄 설명
-          </p>
+          <p className={styles.description}>{description}</p>
         </div>
         <div className={`${styles.detailTab} ${isSticky && styles.shadow}`}>
           <NavLink
