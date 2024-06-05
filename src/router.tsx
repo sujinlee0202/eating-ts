@@ -7,6 +7,7 @@ import Detail from "./pages/Detail/detail";
 import HomeTab from "./pages/Detail/HomeTab";
 import ReviewTab from "./pages/Detail/ReviewTab";
 import PhotoTab from "./pages/Detail/PhotoTab.tsx";
+import LoginLayout from "./layout/LoginLayout.tsx";
 
 const routeData = [
   {
@@ -47,7 +48,11 @@ const routeData = [
   },
   {
     path: "/addplace",
-    element: <AddPlace />,
+    element: (
+      <LoginLayout requireAdmin={true}>
+        <AddPlace />
+      </LoginLayout>
+    ),
   },
 ];
 

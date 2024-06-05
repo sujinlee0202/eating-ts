@@ -45,13 +45,15 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // firebase에 data 전달
-    signup({ email: data.email, password: data.password }).then((user) => {
+    const { email, password, id } = data;
+    // firebase email, password를 통한 회원가입
+    signup({ email: email, password: password }).then((user) => {
+      // 회원가입한 유저를 firestore에 저장
       if (user) {
         setUser({
           ...user,
-          displayName: data.id,
-          photoURL: gravatar.url(data.email, {
+          displayName: id,
+          photoURL: gravatar.url(email, {
             s: "28px",
             d: "retro",
           }),

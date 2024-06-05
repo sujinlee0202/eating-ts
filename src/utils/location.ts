@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { initMap } from "../api/naver/map";
-import { locationPermissionError } from "../components/messages/alertMessages";
+import { locationPermissionError } from "../messages/alertMessages";
 
 type SetMapFunction = Dispatch<SetStateAction<naver.maps.Map | undefined>>;
 

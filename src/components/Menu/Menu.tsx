@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { logout } from "../../api/firebase/auth";
 import styles from "./Menu.module.css";
 import { loginContext } from "../../context/loginContext";
@@ -21,11 +21,6 @@ const Menu = () => {
     },
     staleTime: 5000,
   });
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    if (user?.admin) setIsAdmin(true);
-  }, [user]);
 
   // 로딩 중이거나 에러가 발생한 경우 처리
   if (isLoading) return <div>Loading...</div>;
@@ -43,7 +38,7 @@ const Menu = () => {
 
   return (
     <ul className={styles.container}>
-      {isAdmin && (
+      {user?.admin && (
         <li className={styles.list}>
           <button className={styles.listButton}>
             <Link to='/addplace'>장소 추가하기</Link>
