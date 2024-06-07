@@ -3,24 +3,18 @@ import logo from "../../assets/eating_logo.png";
 import { useEffect, useState } from "react";
 import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from "react-icons/ai";
 import StoreCard from "../StoreCard/StoreCard";
-import { getPlace } from "../../api/firebase/firestore";
 import { calculateDistance, sortByDistance } from "../../utils/distance";
 import { reverseGeocoder } from "../../api/naver/map";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { PlaceReview } from "../../types/place";
 
 interface Props {
   map: naver.maps.Map;
   center: naver.maps.Coord;
+  place: PlaceReview[];
 }
 
-const Sidebar = ({ map, center }: Props) => {
-  const { data } = useQuery({
-    queryKey: ["place"],
-    queryFn: getPlace,
-    staleTime: 1000,
-  });
-
+const Sidebar = ({ map, center, place }: Props) => {
   const { placeId } = useParams();
   const navigate = useNavigate();
 
@@ -35,9 +29,9 @@ const Sidebar = ({ map, center }: Props) => {
     });
   }, [center]);
 
-  if (!data) return null;
+  if (!place) return null;
   // place 배열을 가까운 순서로 정렬
-  sortByDistance(map, data, center).map((place) => {
+  sortByDistance(map, place, center).map((place) => {
     calculateDistance(map, place, center);
   });
 
@@ -46,7 +40,7 @@ const Sidebar = ({ map, center }: Props) => {
   };
 
   const onClickDetail = (id: string) => {
-    const selectedPlace = data.find((p) => p.id === id);
+    const selectedPlace = place.find((p) => p.id === id);
     if (selectedPlace) {
       setOpenDetail(true);
       navigate(`/place/${id}`, { state: selectedPlace });
@@ -58,6 +52,11 @@ const Sidebar = ({ map, center }: Props) => {
     navigate("/");
   };
 
+  const handleMoveHome = () => {
+    setOpenDetail(false);
+    setOpenSidebar(true);
+  };
+
   return (
     <nav
       className={`
@@ -66,12 +65,12 @@ const Sidebar = ({ map, center }: Props) => {
       ${openDetail && !openSidebar && styles.sidebarAndDetailClose}
     `}
     >
-      <Link to='/'>
+      <Link to='/' onClick={handleMoveHome} state={place}>
         <img src={logo} alt='eating-logo' className={styles.logo} />
       </Link>
       <h1 className={styles.location}>{jibunAddress}</h1>
       <div className={styles.storeContainer}>
-        {data?.slice(0, 20).map((place, index) => (
+        {place?.slice(0, 20).map((place, index) => (
           <StoreCard place={place} key={index} onClickDetail={onClickDetail} />
         ))}
       </div>

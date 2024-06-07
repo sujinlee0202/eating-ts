@@ -1,20 +1,13 @@
 import Marker from "./Marker";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getPlace } from "../api/firebase/firestore";
 import { PlaceReview } from "../types/place";
 
 interface Props {
   map: undefined | naver.maps.Map;
+  place: PlaceReview[];
 }
 
-const Markers = ({ map }: Props) => {
-  const { data } = useQuery({
-    queryKey: ["place"],
-    queryFn: getPlace,
-    staleTime: 1000,
-  });
-
+const Markers = ({ map, place }: Props) => {
   const navigate = useNavigate();
 
   const handleDetail = (place: PlaceReview) => {
@@ -23,7 +16,7 @@ const Markers = ({ map }: Props) => {
 
   return (
     <>
-      {data?.map((place, index) => {
+      {place?.map((place, index) => {
         return (
           <Marker
             key={index}
