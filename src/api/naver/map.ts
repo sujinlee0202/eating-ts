@@ -1,16 +1,12 @@
-export const initMap = (lat: number, lon: number) => {
-  const center: naver.maps.LatLng = new naver.maps.LatLng(lat, lon);
+import { Coordinates } from "../../types/naver-map";
 
-  const map = new naver.maps.Map("map", {
-    center: center,
-    zoom: 16,
-    minZoom: 9,
-    scaleControl: false,
-    mapDataControl: false,
-    tileSpare: 1,
-  });
+// map 중심값 구하는 함수
+export const getMapCetner = (initialCenter: Coordinates) => {
+  const center: naver.maps.LatLng = new window.naver.maps.LatLng(
+    ...initialCenter
+  );
 
-  return map;
+  return center;
 };
 
 // marker를 표시하는 지도
