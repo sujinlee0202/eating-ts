@@ -10,7 +10,6 @@ const Home = () => {
   const { data: place } = useQuery({
     queryKey: ["place"],
     queryFn: getPlace,
-    staleTime: 1000,
   });
 
   const { initializeStores } = useStores();

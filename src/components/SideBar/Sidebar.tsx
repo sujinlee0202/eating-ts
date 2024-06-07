@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from "react-icons/ai";
 import StoreCard from "../StoreCard/StoreCard";
 import { calculateDistance, sortByDistance } from "../../utils/distance";
-import { reverseGeocoder } from "../../api/naver/map";
+import { geocoder, reverseGeocoder } from "../../api/naver/map";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import { PlaceReview } from "../../types/place";
 import { useQuery } from "@tanstack/react-query";
@@ -26,15 +26,16 @@ const Sidebar = () => {
   const [openSidebar, setOpenSidebar] = useState(true);
   const [jibunAddress, setJibunAddress] = useState<string>();
   const [openDetail, setOpenDetail] = useState(placeId ? true : false);
-
-  const [center, setCenter] = useState<naver.maps.Coord>();
+  const [logicalCenter, setLogicalCenter] = useState<naver.maps.Coord>();
 
   useEffect(() => {
-    setCenter(map?.getCenter());
+    const initial = map?.getCenter();
+    setLogicalCenter(initial);
   }, [map]);
 
   const handleIdleMap = useCallback(() => {
-    setCenter(map?.getCenter());
+    const current = map?.getCenter();
+    setLogicalCenter(current);
   }, [map]);
 
   useEffect(() => {
@@ -45,21 +46,37 @@ const Sidebar = () => {
 
   // 좌표를 지번 이름으로 변경하기
   useEffect(() => {
-    if (center) {
-      reverseGeocoder(center, function (address: string) {
+    if (logicalCenter && openDetail) {
+      const newLogicalCenter = {
+        ...logicalCenter,
+        x: logicalCenter.x + 0.02,
+      } as naver.maps.Coord;
+      reverseGeocoder(newLogicalCenter, function (address: string) {
+        setJibunAddress(address);
+      });
+    } else if (logicalCenter && !openDetail) {
+      const newLogicalCenter = {
+        ...logicalCenter,
+        x: logicalCenter.x,
+      } as naver.maps.Coord;
+      reverseGeocoder(newLogicalCenter, function (address: string) {
         setJibunAddress(address);
       });
     }
-  }, [center]);
+  }, [logicalCenter, openDetail]);
 
   // place 배열을 가까운 순서로 정렬
   useEffect(() => {
-    if (map && center && place) {
-      sortByDistance(map, place, center).map((place) => {
-        calculateDistance(map, place, center);
+    if (map && logicalCenter && place) {
+      const newLogicalCenter = {
+        ...logicalCenter,
+        x: logicalCenter.x + 0.02,
+      } as naver.maps.Coord;
+      sortByDistance(map, place, newLogicalCenter).map((place) => {
+        calculateDistance(map, place, newLogicalCenter);
       });
     }
-  }, [map, center, place]);
+  }, [map, logicalCenter, place]);
 
   if (!place) return null;
 
@@ -72,6 +89,18 @@ const Sidebar = () => {
     if (selectedPlace) {
       setOpenDetail(true);
       navigate(`/place/${id}`, { state: selectedPlace });
+
+      // Center the map on the selected place
+      if (map && selectedPlace.mapx) {
+        const clickedCoord = geocoder(selectedPlace.mapx, selectedPlace.mapy);
+        const logical = new naver.maps.LatLng(clickedCoord.x, clickedCoord.y);
+        setLogicalCenter(logical);
+        const newCenter = new naver.maps.LatLng(
+          clickedCoord.x,
+          clickedCoord.y - 0.02
+        );
+        map.setCenter(newCenter);
+      }
     }
   };
 

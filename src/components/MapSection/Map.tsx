@@ -14,6 +14,8 @@ const Map = ({ onLoadMap }: Props) => {
 
   useEffect(() => {
     const loadMap = (initialCenter: Coordinates) => {
+      if (mapRef.current) return null;
+
       const mapOptions = {
         center: getMapCetner(initialCenter),
         zoom: INITIAL_ZOOM,

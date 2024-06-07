@@ -25,7 +25,6 @@ const LoginLayout = ({ children, requireAdmin }: Props) => {
         return getUser(parsedSessionStorageUser?.email);
       }
     },
-    staleTime: 5000,
   });
 
   useEffect(() => {

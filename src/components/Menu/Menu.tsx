@@ -19,7 +19,6 @@ const Menu = () => {
         return getUser(parsedSessionStorageUser?.email);
       }
     },
-    staleTime: 5000,
   });
 
   // 로딩 중이거나 에러가 발생한 경우 처리
