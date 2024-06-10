@@ -1,0 +1,21 @@
+.profileWrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 8px;
+  gap: 8px;
+}
+
+.id {
+  font-weight: bold;
+}
+
+.date {
+  color: gray;
+}
+
+.profileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: black;
+}

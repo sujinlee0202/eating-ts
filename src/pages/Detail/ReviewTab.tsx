@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { PlaceReview } from "../../types/place";
 import styles from "./ReviewTab.module.css";
-import Comment from "./Comment";
+import Comment from "../../components/Comment/Comment";
 
 const ReviewTab = () => {
   const location = useLocation();
@@ -18,6 +18,7 @@ const ReviewTab = () => {
           <p className={styles.title}>댓글</p>
           <button className={styles.createComment}>작성하기</button>
         </div>
+        {/** 임시 댓글 기능 */}
         <Comment />
       </div>
     </div>

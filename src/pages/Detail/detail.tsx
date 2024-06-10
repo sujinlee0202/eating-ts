@@ -36,10 +36,11 @@ const Detail = () => {
 
     // Detail 컴포넌트의 스크롤 이벤트를 감지
     detailRef.current?.addEventListener("scroll", handleScroll);
-  }, []); // 컴포넌트가 마운트될 때 한 번만 실행
+  }, []);
 
   return (
     <>
+      {/** scroll 시 나타나는 상단 place name */}
       {showUI && (
         <div
           className={`
@@ -51,7 +52,9 @@ const Detail = () => {
           <p className={styles.scrolledHeaderText}>{title}</p>
         </div>
       )}
+      {/** Detail Page Component */}
       <div className={styles.container} ref={detailRef}>
+        {/** place info */}
         <div className={styles.imageContainer}>
           {images && <ImageCaruosel imageUrl={images} />}
         </div>
@@ -60,6 +63,7 @@ const Detail = () => {
           <p className={styles.category}>{category}</p>
           <p className={styles.description}>{description}</p>
         </div>
+        {/** tab */}
         <div className={`${styles.detailTab} ${isSticky && styles.shadow}`}>
           <NavLink
             to={`/place/${id}/home`}
@@ -101,6 +105,7 @@ const Detail = () => {
             )}
           </NavLink>
         </div>
+        {/** Tab 하위 페이지 */}
         <Outlet />
       </div>
     </>

@@ -33,6 +33,7 @@ const Sidebar = () => {
     setLogicalCenter(initial);
   }, [map]);
 
+  // 지도를 움직일 때 중심값 계산
   const handleIdleMap = useCallback(() => {
     const current = map?.getCenter();
     setLogicalCenter(current);
@@ -80,10 +81,12 @@ const Sidebar = () => {
 
   if (!place) return null;
 
+  // 사이드바 접기
   const handleClose = () => {
     setOpenSidebar((prev) => !prev);
   };
 
+  // stord card를 선택해 detail page 열기
   const onClickDetail = (id: string) => {
     const selectedPlace = place.find((p) => p.id === id);
     if (selectedPlace) {
@@ -104,11 +107,13 @@ const Sidebar = () => {
     }
   };
 
+  // detail page 닫기
   const onClickDetailClose = () => {
     setOpenDetail(false);
     navigate("/");
   };
 
+  // home으로 이동
   const handleMoveHome = () => {
     setOpenDetail(false);
     setOpenSidebar(true);
