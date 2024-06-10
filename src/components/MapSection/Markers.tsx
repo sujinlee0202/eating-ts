@@ -1,13 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
+import { MAP_KEY } from "../../hooks/useMaps";
+import { STORE_KEY } from "../../hooks/useStore";
+import { NaverMap } from "../../types/naver-map";
+import { PlaceReview } from "../../types/place";
 import Marker from "./Marker";
 import { useNavigate } from "react-router-dom";
-import { PlaceReview } from "../types/place";
 
-interface Props {
-  map: undefined | naver.maps.Map;
-  place: PlaceReview[];
-}
+const Markers = () => {
+  const { data: map } = useQuery<NaverMap>({
+    queryKey: [MAP_KEY],
+  });
+  const { data: stores } = useQuery<PlaceReview[]>({
+    queryKey: [STORE_KEY],
+  });
 
-const Markers = ({ map, place }: Props) => {
   const navigate = useNavigate();
 
   const handleDetail = (place: PlaceReview) => {
@@ -16,7 +22,7 @@ const Markers = ({ map, place }: Props) => {
 
   return (
     <>
-      {place?.map((place, index) => {
+      {stores?.map((place, index) => {
         return (
           <Marker
             key={index}

@@ -1,20 +1,17 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import styles from "./detail.module.css";
 import { useEffect, useRef, useState } from "react";
-import { clickPlaceMap, geocoder } from "../../api/naver/map";
 import ImageCaruosel from "../../components/ImageCarousel/ImageCaruosel";
 import { PlaceReview } from "../../types/place";
 import { useQuery } from "@tanstack/react-query";
 
 const Detail = () => {
   const location = useLocation();
-  const { title, mapx, mapy, id, category, description }: PlaceReview =
-    location.state;
+  const { title, id, category, description }: PlaceReview = location.state;
   const { data: images } = useQuery<string[]>({
     queryKey: ["images", id],
   });
 
-  const clickedGeocoder = geocoder(mapx, mapy);
   const detailRef = useRef<HTMLDivElement>(null);
   const currentTab = location.pathname.split("/").pop();
 
@@ -40,10 +37,6 @@ const Detail = () => {
     // Detail 컴포넌트의 스크롤 이벤트를 감지
     detailRef.current?.addEventListener("scroll", handleScroll);
   }, []); // 컴포넌트가 마운트될 때 한 번만 실행
-
-  useEffect(() => {
-    clickPlaceMap(clickedGeocoder.x, clickedGeocoder.y);
-  }, [clickedGeocoder]);
 
   return (
     <>

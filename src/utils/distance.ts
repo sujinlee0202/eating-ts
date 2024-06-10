@@ -1,8 +1,9 @@
 import { geocoder } from "../api/naver/map";
+import { NaverMap } from "../types/naver-map";
 import { PlaceReview } from "../types/place";
 
 export const calculateDistance = (
-  map: naver.maps.Map,
+  map: NaverMap,
   place: PlaceReview,
   center: naver.maps.Coord
 ) => {
@@ -18,7 +19,7 @@ export const calculateDistance = (
 };
 
 export const sortByDistance = (
-  map: naver.maps.Map,
+  map: NaverMap,
   places: PlaceReview[],
   center: naver.maps.Coord
 ) => {
