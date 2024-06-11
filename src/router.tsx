@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./Pages/home.tsx";
-import Signup from "./Pages/Signup/signup.tsx";
-import Login from "./Pages/Login/login.tsx";
-import AddPlace from "./Pages/AddPlace/addplace.tsx";
-import Detail from "./Pages/Detail/detail.tsx";
-import HomeTab from "./Pages/Detail/HomeTab.tsx";
-import ReviewTab from "./Pages/Detail/ReviewTab.tsx";
-import PhotoTab from "./Pages/Detail/PhotoTab.tsx";
+import Home from "./pages/home.tsx";
+import Signup from "./pages/Signup/signup.tsx";
+import Login from "./pages/Login/login.tsx";
+import AddPlace from "./pages/AddPlace/addplace.tsx";
+import Detail from "./pages/Detail/detail.tsx";
+import HomeTab from "./pages/Detail/HomeTab.tsx";
+import ReviewTab from "./pages/Detail/ReviewTab.tsx";
+import PhotoTab from "./pages/Detail/PhotoTab.tsx";
 import LoginLayout from "./layout/LoginLayout.tsx";
 
 const routeData = [
