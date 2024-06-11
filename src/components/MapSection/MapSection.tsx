@@ -1,6 +1,6 @@
 import useMaps, { INITIAL_CENTER, INITIAL_ZOOM } from "../../hooks/useMaps";
 import { Coordinates, NaverMap } from "../../types/naver-map";
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar.tsx";
 import styles from "./MapSection.module.css";
 import { useEffect, useRef } from "react";
 import { getMapCetner } from "../../api/naver/map";
