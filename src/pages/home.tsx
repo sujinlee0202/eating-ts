@@ -4,6 +4,7 @@ import { getPlace } from "../api/firebase/firestore";
 import { useEffect } from "react";
 import useStores from "../hooks/useStore";
 import { useLocation } from "react-router-dom";
+import MapSection from "@/components/MapSection/MapSection";
 
 const Home = () => {
   const { data: place } = useQuery({
@@ -20,7 +21,7 @@ const Home = () => {
 
   return (
     <>
-      {/* <MapSection /> */}
+      <MapSection />
       <UserMenu />
     </>
   );
