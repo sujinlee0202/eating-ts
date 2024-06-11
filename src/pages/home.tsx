@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import MapSection from "../components/MapSection/MapSection";
 import UserMenu from "../components/UserMenu/UserMenu";
 import { getPlace } from "../api/firebase/firestore";
 import { useEffect } from "react";
@@ -21,7 +20,7 @@ const Home = () => {
 
   return (
     <>
-      <MapSection />
+      {/* <MapSection /> */}
       <UserMenu />
     </>
   );
