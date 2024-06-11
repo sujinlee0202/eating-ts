@@ -1,11 +1,11 @@
 import useMaps, { INITIAL_CENTER, INITIAL_ZOOM } from "../../hooks/useMaps";
 import { Coordinates, NaverMap } from "../../types/naver-map";
-import Sidebar from "../Sidebar/Sidebar";
-import Markers from "./Markers";
+import Sidebar from "../sidebar/Sidebar";
 import styles from "./MapSection.module.css";
 import { useEffect, useRef } from "react";
 import { getMapCetner } from "../../api/naver/map";
 import { locationPermissionError } from "../../messages/alertMessages";
+import Markers from "./Markers";
 
 const MapSection = () => {
   const mapRef = useRef<NaverMap | null>(null);
