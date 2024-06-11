@@ -4,7 +4,7 @@ import {
   UseFormSetValue,
   UseFormWatch,
 } from "react-hook-form";
-import { Inputs } from "../../pages/Signup/signup";
+import { Inputs } from "../../Pages/Signup/signup";
 import { ERROR_MSG_TERMS } from "../../errors/inputErrorMessage";
 import Checkbox from "../Checkbox/Checkbox";
 import styles from "./Terms.module.css";
