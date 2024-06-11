@@ -1,4 +1,4 @@
-import styles from "./Sidebar.module.css";
+import styles from "./index.module.css";
 import logo from "../../assets/eating_logo.png";
 import { useCallback, useEffect, useState } from "react";
 import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from "react-icons/ai";
