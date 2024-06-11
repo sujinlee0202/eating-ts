@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { logout } from "../../api/firebase/auth";
-import styles from "./Menu.module.css";
+import styles from "./index.module.css";
 import { loginContext } from "../../context/loginContext";
 import { Link } from "react-router-dom";
 import { getUser } from "../../api/firebase/firestore";

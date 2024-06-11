@@ -4,10 +4,10 @@ import {
   UseFormSetValue,
   UseFormWatch,
 } from "react-hook-form";
-import { Inputs } from "../../pages/Signup/signup";
+import { Inputs } from "../../pages/Signup";
 import { ERROR_MSG_TERMS } from "../../errors/inputErrorMessage";
-import Checkbox from "../Checkbox/Checkbox";
-import styles from "./Terms.module.css";
+import Checkbox from "../Checkbox";
+import styles from "./index.module.css";
 
 interface Props {
   register: UseFormRegister<Inputs>;

@@ -1,10 +1,10 @@
+import MapSection from "../../components/MapSection";
+import UserMenu from "../../components/UserMenu";
 import { useQuery } from "@tanstack/react-query";
-import UserMenu from "../components/UserMenu/UserMenu";
-import { getPlace } from "../api/firebase/firestore";
+import { getPlace } from "../../api/firebase/firestore";
 import { useEffect } from "react";
-import useStores from "../hooks/useStore";
 import { useLocation } from "react-router-dom";
-import MapSection from "../components/MapSection";
+import useStores from "../../hooks/useStore";
 
 const Home = () => {
   const { data: place } = useQuery({
@@ -18,6 +18,8 @@ const Home = () => {
   useEffect(() => {
     place && initializeStores(place);
   }, [initializeStores, place, location.state]);
+
+  console.log("?");
 
   return (
     <>

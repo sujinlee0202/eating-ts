@@ -1,9 +1,9 @@
 import { useState } from "react";
-import styles from "./StoreCard.module.css";
+import styles from "./index.module.css";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { PlaceReview } from "../../types/place";
 import { downloadFile } from "../../api/firebase/storage";
-import ImageCaruosel from "../ImageCarousel/ImageCaruosel";
+import ImageCaruosel from "../ImageCarousel";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {

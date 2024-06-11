@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./pages/home.tsx";
-import Signup from "./pages/Signup/signup.tsx";
-import Login from "./pages/Login/login.tsx";
-import AddPlace from "./pages/AddPlace/addplace.tsx";
-import Detail from "./pages/Detail/detail.tsx";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import AddPlace from "./pages/AddPlace";
+import Detail from "./pages/Detail";
 import HomeTab from "./pages/Detail/HomeTab.tsx";
 import ReviewTab from "./pages/Detail/ReviewTab.tsx";
 import PhotoTab from "./pages/Detail/PhotoTab.tsx";

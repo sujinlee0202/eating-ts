@@ -2,7 +2,7 @@ import styles from "./index.module.css";
 import logo from "../../assets/eating_logo.png";
 import { useCallback, useEffect, useState } from "react";
 import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from "react-icons/ai";
-import StoreCard from "../StoreCard/StoreCard";
+import StoreCard from "../StoreCard";
 import { calculateDistance, sortByDistance } from "../../utils/distance";
 import { geocoder, reverseGeocoder } from "../../api/naver/map";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";

@@ -1,13 +1,13 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import logo from "../../assets/eating_logo.png";
-import styles from "./signup.module.css";
+import styles from "./index.module.css";
 import { useRef } from "react";
-import Input from "../../components/Input/Input";
+import Input from "../../components/Input";
 import * as InputError from "../../errors/inputErrorMessage";
-import Terms from "../../components/Terms/Terms";
+import Terms from "../../components/Terms";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../api/firebase/auth";
-import SNSLogin from "../../components/SNSLogin/SNSLogin";
+import SNSLogin from "../../components/SNSLogin";
 import { setUser } from "../../api/firebase/firestore";
 import gravatar from "gravatar";
 

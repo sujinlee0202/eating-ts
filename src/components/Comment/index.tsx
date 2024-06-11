@@ -1,4 +1,4 @@
-import styles from "./Comment.module.css";
+import styles from "./index.module.css";
 
 const Comment = () => {
   return (

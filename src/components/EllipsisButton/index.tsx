@@ -1,4 +1,4 @@
-import styles from "./EllipsisButton.module.css";
+import styles from "./index.module.css";
 
 interface Props {
   imageUrl: string[];

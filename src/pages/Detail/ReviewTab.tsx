@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { PlaceReview } from "../../types/place";
 import styles from "./ReviewTab.module.css";
-import Comment from "../../components/Comment/Comment";
+import Comment from "../../components/Comment";
 
 const ReviewTab = () => {
   const location = useLocation();

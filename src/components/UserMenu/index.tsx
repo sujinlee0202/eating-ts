@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import styles from "./UserMenu.module.css";
+import styles from "./index.module.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { loginContext } from "../../context/loginContext";
-import Menu from "../Menu/Menu";
+import Menu from "../Menu";
 import gravatar from "gravatar";
 
 const UserMenu = () => {

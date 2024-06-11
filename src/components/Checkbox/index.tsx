@@ -1,5 +1,5 @@
 import { FieldError } from "react-hook-form";
-import styles from "./Checkbox.module.css";
+import styles from "./index.module.css";
 
 interface Props {
   label: string;

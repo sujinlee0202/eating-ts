@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./TextArea.module.css";
+import styles from "./index.module.css";
 
 type InputFieldError = {
   type: string;

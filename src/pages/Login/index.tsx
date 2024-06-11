@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import logo from "../../assets/eating_logo.png";
-import styles from "./login.module.css";
+import styles from "./index.module.css";
 import { useContext, useRef } from "react";
-import Input from "../../components/Input/Input";
+import Input from "../../components/Input";
 import * as InputError from "../../errors/inputErrorMessage";
 import { Link, useNavigate } from "react-router-dom";
 import { signinWithEmailAndPassword } from "../../api/firebase/auth";

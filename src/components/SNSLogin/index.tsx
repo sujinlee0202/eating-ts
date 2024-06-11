@@ -1,6 +1,6 @@
 import googleLogin from "../../assets/google_login.png";
 import naverLogin from "../../assets/naver_login.png";
-import styles from "./SNSLogin.module.css";
+import styles from "./index.module.css";
 
 const SNSLogin = () => {
   const handleGoogleLogin = () => {

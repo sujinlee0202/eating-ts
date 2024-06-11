@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import styles from "./ImageCarousel.module.css";
-import EllipsisButton from "../EllipsisButton/EllipsisButton";
-import ArrowButton from "../ArrowButton/ArrowButton";
+import styles from "./index.module.css";
+import EllipsisButton from "../EllipsisButton";
+import ArrowButton from "../ArrowButton";
 import { MdImageNotSupported } from "react-icons/md";
 
 interface Props {

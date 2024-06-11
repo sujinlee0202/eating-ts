@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./Input.module.css";
+import styles from "./index.module.css";
 
 type InputFieldError = {
   type: string;

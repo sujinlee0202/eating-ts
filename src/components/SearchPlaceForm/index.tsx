@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import styles from "./SearchPlaceForm.module.css";
+import styles from "./index.module.css";
 import * as InputError from "../../errors/inputErrorMessage";
 import { useEffect, useState } from "react";
 import { search } from "../../api/naver/search";

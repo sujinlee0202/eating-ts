@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import styles from "./detail.module.css";
+import styles from "./index.module.css";
 import { useEffect, useRef, useState } from "react";
-import ImageCaruosel from "../../components/ImageCarousel/ImageCaruosel";
+import ImageCaruosel from "../../components/ImageCarousel";
 import { PlaceReview } from "../../types/place";
 import { useQuery } from "@tanstack/react-query";
 

@@ -1,6 +1,6 @@
-import styles from "./addplace.module.css";
-import SearchPlaceForm from "../../components/SearchPlaceForm/SearchPlaceForm";
-import AddPlaceInfoForm from "../../components/AddPlaceInfoForm/AddPlaceInfoForm";
+import styles from "./index.module.css";
+import SearchPlaceForm from "../../components/SearchPlaceForm";
+import AddPlaceInfoForm from "../../components/AddPlaceInfoForm";
 import { useState } from "react";
 import { Place } from "../../types/place";
 
