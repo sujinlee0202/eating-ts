@@ -19,8 +19,6 @@ const Home = () => {
     place && initializeStores(place);
   }, [initializeStores, place, location.state]);
 
-  console.log("?");
-
   return (
     <>
       <MapSection />
