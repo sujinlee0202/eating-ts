@@ -5,7 +5,7 @@ import useMaps, { INITIAL_CENTER, INITIAL_ZOOM } from "@hooks/useMaps";
 import { Coordinates, NaverMap } from "@type/naver-map";
 import { getMapCetner } from "@api/naver/map";
 import { locationPermissionError } from "@messages/alertMessages";
-import Sidebar from "@components/Sidebar";
+import Sidebar from "@components/SideBar";
 import Markers from "./Markers";
 
 const MapSection = () => {
