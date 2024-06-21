@@ -1,10 +1,12 @@
-import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./index.module.css";
-import * as InputError from "../../errors/inputErrorMessage";
+
 import { useEffect, useState } from "react";
-import { search } from "../../api/naver/search";
-import { geocoder, markerMap } from "../../api/naver/map";
-import { Place } from "../../types/place";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import * as InputError from "@errors/inputErrorMessage";
+import { search } from "@api/naver/search";
+import { geocoder, markerMap } from "@api/naver/map";
+import { Place } from "@type/place";
 
 interface Inputs {
   place: string;

@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
 import styles from "./index.module.css";
-import EllipsisButton from "../EllipsisButton";
-import ArrowButton from "../ArrowButton";
+
+import { useEffect, useState } from "react";
 import { MdImageNotSupported } from "react-icons/md";
+
+import ArrowButton from "@components/ArrowButton";
+import EllipsisButton from "@components/EllipsisButton";
 
 interface Props {
   imageUrl: string[];

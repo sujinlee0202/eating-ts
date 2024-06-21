@@ -1,13 +1,15 @@
+import styles from "./index.module.css";
+
 import {
   FieldErrors,
   UseFormRegister,
   UseFormSetValue,
   UseFormWatch,
 } from "react-hook-form";
-import { Inputs } from "../../pages/Signup";
-import { ERROR_MSG_TERMS } from "../../errors/inputErrorMessage";
+
+import { ERROR_MSG_TERMS } from "@errors/inputErrorMessage";
+import { Inputs } from "@pages/Signup";
 import Checkbox from "../Checkbox";
-import styles from "./index.module.css";
 
 interface Props {
   register: UseFormRegister<Inputs>;

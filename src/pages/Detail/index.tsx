@@ -1,8 +1,10 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom";
 import styles from "./index.module.css";
+
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import ImageCaruosel from "../../components/ImageCarousel";
-import { PlaceReview } from "../../types/place";
+
+import ImageCaruosel from "@components/ImageCarousel";
+import { PlaceReview } from "@type/place";
 import { useQuery } from "@tanstack/react-query";
 
 const Detail = () => {

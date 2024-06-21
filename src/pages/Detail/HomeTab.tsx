@@ -1,11 +1,13 @@
+import styles from "./HomeTab.module.css";
+
 import { useLocation } from "react-router-dom";
-import { PlaceReview } from "../../types/place";
+
+import { PlaceReview } from "@type/place";
 import {
   MdLocationOn,
   MdOutlineAccessTimeFilled,
   MdPhone,
 } from "react-icons/md";
-import styles from "./HomeTab.module.css";
 
 const HomeTab = () => {
   const location = useLocation();

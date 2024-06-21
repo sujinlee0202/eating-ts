@@ -1,6 +1,6 @@
-import { geocoder } from "../api/naver/map";
-import { NaverMap } from "../types/naver-map";
-import { PlaceReview } from "../types/place";
+import { geocoder } from "@api/naver/map";
+import { NaverMap } from "@type/naver-map";
+import { PlaceReview } from "@type/place";
 
 export const calculateDistance = (
   map: NaverMap,

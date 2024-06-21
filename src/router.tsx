@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./pages/Home";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import AddPlace from "./pages/AddPlace";
-import Detail from "./pages/Detail";
-import HomeTab from "./pages/Detail/HomeTab.tsx";
-import ReviewTab from "./pages/Detail/ReviewTab.tsx";
-import PhotoTab from "./pages/Detail/PhotoTab.tsx";
-import LoginLayout from "./layout/LoginLayout.tsx";
+
+import LoginLayout from "@layout/LoginLayout";
+import Addplace from "@pages/AddPlace";
+import Detail from "@pages/Detail";
+import HomeTab from "@pages/Detail/HomeTab";
+import PhotoTab from "@pages/Detail/PhotoTab";
+import ReviewTab from "@pages/Detail/ReviewTab";
+import Home from "@pages/Home";
+import Login from "@pages/Login";
+import Signup from "@pages/Signup";
 
 const routeData = [
   {
@@ -50,7 +51,7 @@ const routeData = [
     path: "/addplace",
     element: (
       <LoginLayout requireAdmin={true}>
-        <AddPlace />
+        <Addplace />
       </LoginLayout>
     ),
   },

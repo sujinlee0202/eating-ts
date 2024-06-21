@@ -1,4 +1,3 @@
-import { PlaceReview } from "./../../types/place";
 // import gravatar from "gravatar";
 import {
   collection,
@@ -11,7 +10,9 @@ import {
 } from "firebase/firestore";
 import { app } from ".";
 import { User } from "firebase/auth";
-import { generateUniqueId } from "../../utils/generateUniqueId";
+
+import { PlaceReview } from "@type/place";
+import { generateUniqueId } from "@utils/generateUniqueId";
 
 const db = getFirestore(app);
 

@@ -1,5 +1,6 @@
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import styles from "./index.module.css";
+
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 interface Props {
   direction: string;

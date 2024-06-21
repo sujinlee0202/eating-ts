@@ -1,10 +1,12 @@
-import { useState } from "react";
 import styles from "./index.module.css";
+
+import { useState } from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import { PlaceReview } from "../../types/place";
-import { downloadFile } from "../../api/firebase/storage";
-import ImageCaruosel from "../ImageCarousel";
 import { useQuery } from "@tanstack/react-query";
+
+import { PlaceReview } from "@type/place";
+import { downloadFile } from "@api/firebase/storage";
+import ImageCaruosel from "../ImageCarousel";
 
 interface Props {
   place: PlaceReview;

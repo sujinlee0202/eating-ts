@@ -1,10 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
+
+import { useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useContext, useState } from "react";
-import { loginContext } from "../../context/loginContext";
-import Menu from "../Menu";
 import gravatar from "gravatar";
+
+import { loginContext } from "@context/loginContext";
+import Menu from "../Menu";
 
 const UserMenu = () => {
   const { parsedSessionStorageUser } = useContext(loginContext);

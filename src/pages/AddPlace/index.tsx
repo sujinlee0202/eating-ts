@@ -1,8 +1,10 @@
 import styles from "./index.module.css";
-import SearchPlaceForm from "../../components/SearchPlaceForm";
-import AddPlaceInfoForm from "../../components/AddPlaceInfoForm";
+
 import { useState } from "react";
-import { Place } from "../../types/place";
+
+import { Place } from "@type/place";
+import SearchPlaceForm from "@components/SearchPlaceForm";
+import AddPlaceInfoForm from "@components/AddPlaceInfoForm";
 
 const Addplace = () => {
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);

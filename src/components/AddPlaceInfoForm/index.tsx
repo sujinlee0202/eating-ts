@@ -1,14 +1,16 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import Input from "../Input";
-import TextArea from "../TextArea";
-import * as InputError from "../../errors/inputErrorMessage";
 import styles from "./index.module.css";
-import { uploadFile } from "../../api/firebase/storage";
+
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
-import ImageCaruosel from "../ImageCarousel";
-import { Place, PlaceReview } from "../../types/place";
-import { setPlace } from "../../api/firebase/firestore";
 import { useNavigate } from "react-router-dom";
+
+import * as InputError from "@errors/inputErrorMessage";
+import { Place, PlaceReview } from "@type/place";
+import { setPlace } from "@api/firebase/firestore";
+import { uploadFile } from "@api/firebase/storage";
+import ImageCaruosel from "@components/ImageCarousel";
+import Input from "@components/Input";
+import TextArea from "@components/TextArea";
 
 export interface Inputs {
   review: string;

@@ -1,5 +1,6 @@
-import { FieldError } from "react-hook-form";
 import styles from "./index.module.css";
+
+import { FieldError } from "react-hook-form";
 
 interface Props {
   label: string;
