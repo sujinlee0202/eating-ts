@@ -1,4 +1,4 @@
-import { Inputs } from "@components/AddPlaceInfoForm";
+import { Inputs } from "@/components/AddPlaceInfoForm";
 
 export interface Place {
   id: string;

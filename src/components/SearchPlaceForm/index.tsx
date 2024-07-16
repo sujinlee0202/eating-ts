@@ -3,10 +3,10 @@ import styles from "./index.module.css";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import * as InputError from "@errors/inputErrorMessage";
-import { search } from "@api/naver/search";
-import { geocoder, markerMap } from "@api/naver/map";
-import { Place } from "@type/place";
+import * as InputError from "@/errors/inputErrorMessage";
+import { search } from "@/api/naver/search";
+import { geocoder, markerMap } from "@/api/naver/map";
+import { Place } from "@/types/place";
 
 interface Inputs {
   place: string;

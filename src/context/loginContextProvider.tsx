@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { onAuthStateChange } from "../api/firebase/auth";
 import { loginContext } from "./loginContext";
 import { User } from "firebase/auth";
+import { onAuthStateChange } from "../api/firebase/auth";
 
 interface Props {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback } from "react";
-import { Coordinates, NaverMap } from "../types/naver-map";
+import { Coordinates, NaverMap } from "@/types/naver-map";
 
 export const INITIAL_CENTER: Coordinates = [37.5666103, 126.9783882];
 export const INITIAL_ZOOM = 15;

@@ -4,11 +4,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import logo from "@assets/eating_logo.png";
-import * as InputError from "@errors/inputErrorMessage";
-import Input from "@components/Input";
-import { signinWithEmailAndPassword } from "@api/firebase/auth";
-import { loginContext } from "@context/loginContext";
+import logo from "@/assets/eating_logo.png";
+import * as InputError from "@/errors/inputErrorMessage";
+import Input from "@/components/Input";
+import { signinWithEmailAndPassword } from "@/api/firebase/auth";
+import { loginContext } from "@/context/loginContext";
 
 interface InputText {
   email: string;

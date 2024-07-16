@@ -1,4 +1,4 @@
-import { Coordinates } from "@type/naver-map";
+import { Coordinates } from "@/types/naver-map";
 
 // map 중심값 구하는 함수
 export const getMapCetner = (initialCenter: Coordinates) => {

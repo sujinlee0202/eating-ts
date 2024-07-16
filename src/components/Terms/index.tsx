@@ -7,8 +7,8 @@ import {
   UseFormWatch,
 } from "react-hook-form";
 
-import { ERROR_MSG_TERMS } from "@errors/inputErrorMessage";
-import { Inputs } from "@pages/Signup";
+import { ERROR_MSG_TERMS } from "@/errors/inputErrorMessage";
+import { Inputs } from "@/pages/Signup";
 import Checkbox from "../Checkbox";
 
 interface Props {

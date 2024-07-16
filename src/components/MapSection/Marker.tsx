@@ -1,5 +1,5 @@
+import { geocoder } from "@/api/naver/map";
 import { useEffect } from "react";
-import { geocoder } from "../../api/naver/map";
 
 interface Props {
   map: undefined | naver.maps.Map;

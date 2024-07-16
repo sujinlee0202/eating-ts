@@ -5,7 +5,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { useContext, useState } from "react";
 import gravatar from "gravatar";
 
-import { loginContext } from "@context/loginContext";
+import { loginContext } from "@/context/loginContext";
 import Menu from "../Menu";
 
 const UserMenu = () => {

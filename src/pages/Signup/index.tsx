@@ -5,13 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import gravatar from "gravatar";
 
-import logo from "@assets/eating_logo.png";
-import * as InputError from "@errors/inputErrorMessage";
-import { signup } from "@api/firebase/auth";
-import { setUser } from "@api/firebase/firestore";
-import Input from "@components/Input";
-import Terms from "@components/Terms";
-import SNSLogin from "@components/SNSLogin";
+import logo from "@/assets/eating_logo.png";
+import * as InputError from "@/errors/inputErrorMessage";
+import { signup } from "@/api/firebase/auth";
+import { setUser } from "@/api/firebase/firestore";
+import Input from "@/components/Input";
+import Terms from "@/components/Terms";
+import SNSLogin from "@/components/SNSLogin";
 
 interface InputText {
   email: string;

@@ -5,14 +5,14 @@ import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from "react-icons/ai";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
-import logo from "@assets/eating_logo.png";
+import logo from "@/assets/eating_logo.png";
 import StoreCard from "../StoreCard";
-import { calculateDistance, sortByDistance } from "@utils/distance";
-import { geocoder, reverseGeocoder } from "@api/naver/map";
-import { PlaceReview } from "@type/place";
-import { NaverMap } from "@type/naver-map";
-import { MAP_KEY } from "@hooks/useMaps";
-import { STORE_KEY } from "@hooks/useStore";
+import { calculateDistance, sortByDistance } from "@/utils/distance";
+import { geocoder, reverseGeocoder } from "@/api/naver/map";
+import { PlaceReview } from "@/types/place";
+import { NaverMap } from "@/types/naver-map";
+import { MAP_KEY } from "@/hooks/useMaps";
+import { STORE_KEY } from "@/hooks/useStore";
 
 const Sidebar = () => {
   const { data: map } = useQuery<NaverMap>({

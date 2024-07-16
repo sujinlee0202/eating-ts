@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { MAP_KEY } from "../../hooks/useMaps";
-import { STORE_KEY } from "../../hooks/useStore";
-import { NaverMap } from "../../types/naver-map";
-import { PlaceReview } from "../../types/place";
 import Marker from "./Marker";
 import { useNavigate } from "react-router-dom";
+import { NaverMap } from "@/types/naver-map";
+import { MAP_KEY } from "@/hooks/useMaps";
+import { STORE_KEY } from "@/hooks/useStore";
+import { PlaceReview } from "@/types/place";
 
 const Markers = () => {
   const { data: map } = useQuery<NaverMap>({

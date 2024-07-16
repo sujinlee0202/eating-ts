@@ -2,7 +2,7 @@ import styles from "./HomeTab.module.css";
 
 import { useLocation } from "react-router-dom";
 
-import { PlaceReview } from "@type/place";
+import { PlaceReview } from "@/types/place";
 import {
   MdLocationOn,
   MdOutlineAccessTimeFilled,

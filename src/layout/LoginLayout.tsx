@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 import { loginContext } from "../context/loginContext";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getUser } from "../api/firebase/firestore";
-import { permissionSettingError } from "../messages/alertMessages";
+import { permissionSettingError } from "@/messages/alertMessages";
+import { getUser } from "@/api/firebase/firestore";
 
 interface Props {
   children: React.ReactNode;

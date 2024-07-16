@@ -3,8 +3,8 @@ import styles from "./index.module.css";
 import { useEffect, useState } from "react";
 import { MdImageNotSupported } from "react-icons/md";
 
-import ArrowButton from "@components/ArrowButton";
-import EllipsisButton from "@components/EllipsisButton";
+import ArrowButton from "@/components/ArrowButton";
+import EllipsisButton from "@/components/EllipsisButton";
 
 interface Props {
   imageUrl: string[];

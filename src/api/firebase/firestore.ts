@@ -11,8 +11,8 @@ import {
 import { app } from ".";
 import { User } from "firebase/auth";
 
-import { PlaceReview } from "@type/place";
-import { generateUniqueId } from "@utils/generateUniqueId";
+import { generateUniqueId } from "@/utils/generateUniqueId";
+import { PlaceReview } from "@/types/place";
 
 const db = getFirestore(app);
 

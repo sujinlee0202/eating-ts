@@ -4,9 +4,9 @@ import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
-import { logout } from "@api/firebase/auth";
-import { loginContext } from "@context/loginContext";
-import { getUser } from "@api/firebase/firestore";
+import { logout } from "@/api/firebase/auth";
+import { loginContext } from "@/context/loginContext";
+import { getUser } from "@/api/firebase/firestore";
 
 const Menu = () => {
   const { parsedSessionStorageUser, setUser } = useContext(loginContext);

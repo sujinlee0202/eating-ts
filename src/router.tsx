@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import LoginLayout from "@layout/LoginLayout";
-import Addplace from "@pages/AddPlace";
-import Detail from "@pages/Detail";
-import HomeTab from "@pages/Detail/HomeTab";
-import PhotoTab from "@pages/Detail/PhotoTab";
-import ReviewTab from "@pages/Detail/ReviewTab";
-import Home from "@pages/Home";
-import Login from "@pages/Login";
-import Signup from "@pages/Signup";
+import Detail from "./pages/Detail";
+import HomeTab from "./pages/Detail/HomeTab";
+import PhotoTab from "./pages/Detail/PhotoTab";
+import ReviewTab from "./pages/Detail/ReviewTab";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import LoginLayout from "./layout/LoginLayout";
+import Addplace from "./pages/AddPlace";
 
 const routeData = [
   {

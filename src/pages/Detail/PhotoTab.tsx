@@ -1,6 +1,6 @@
 import styles from "./PhotoTab.module.css";
 
-import { PlaceReview } from "@type/place";
+import { PlaceReview } from "@/types/place";
 import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 

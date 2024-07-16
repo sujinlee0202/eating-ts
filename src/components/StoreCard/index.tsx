@@ -4,8 +4,8 @@ import { useState } from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { useQuery } from "@tanstack/react-query";
 
-import { PlaceReview } from "@type/place";
-import { downloadFile } from "@api/firebase/storage";
+import { PlaceReview } from "@/types/place";
+import { downloadFile } from "@/api/firebase/storage";
 import ImageCaruosel from "../ImageCarousel";
 
 interface Props {
