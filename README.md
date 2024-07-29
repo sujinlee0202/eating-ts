@@ -49,10 +49,12 @@ npm run dev
 ## 배포 URL
 
 본 프로젝트는 다음 링크를 통해 실제 서비스를 확인할 수 있습니다.
+[https://eating-ts.vercel.app](https://eating-ts.vercel.app/)
 
 ## 사용 방법
 
 1. 웹 브라우저를 열고 [http://localhost:5173](http://localhost:5173)에 접속합니다.
+   - 배포 URL을 이용하는 경우 [https://eating-ts.vercel.app](https://eating-ts.vercel.app/)에 접속합니다.
 2. 지도에서 맛집 마커를 클릭해 상세정보를 확인할 수 있습니다.
 3. 사이드 바에서 맛집을 클릭해 상세정보를 확인할 수 있습니다.
 4. 리뷰 권한이 있는 유저는 맛집과 리뷰를 등록할 수 있습니다.
